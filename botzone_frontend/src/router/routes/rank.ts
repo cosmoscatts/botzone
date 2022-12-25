@@ -1,15 +1,15 @@
 import { BASE_LAYOUT } from '~/layout'
 
 export default {
-  path: '/profile',
+  path: '/rank',
   component: BASE_LAYOUT,
   children: [
     {
       path: '',
-      name: 'Profile',
-      component: () => import('~/pages/profile/index.vue'),
+      name: 'Rank',
+      component: () => import('~/pages/rank/index.vue'),
       meta: {
-        title: '个人资料',
+        title: '排行榜',
         requiresAuth: true,
       },
     },

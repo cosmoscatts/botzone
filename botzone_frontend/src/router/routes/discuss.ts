@@ -1,15 +1,15 @@
 import { BASE_LAYOUT } from '~/layout'
 
 export default {
-  path: '/profile',
+  path: '/discuss',
   component: BASE_LAYOUT,
   children: [
     {
       path: '',
-      name: 'Profile',
-      component: () => import('~/pages/profile/index.vue'),
+      name: 'Discuss',
+      component: () => import('~/pages/discuss/index.vue'),
       meta: {
-        title: '个人资料',
+        title: '讨论区',
         requiresAuth: true,
       },
     },

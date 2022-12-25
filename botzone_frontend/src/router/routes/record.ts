@@ -1,15 +1,15 @@
 import { BASE_LAYOUT } from '~/layout'
 
 export default {
-  path: '/profile',
+  path: '/record',
   component: BASE_LAYOUT,
   children: [
     {
       path: '',
-      name: 'Profile',
-      component: () => import('~/pages/profile/index.vue'),
+      name: 'Record',
+      component: () => import('~/pages/record/index.vue'),
       meta: {
-        title: '个人资料',
+        title: '对局记录',
         requiresAuth: true,
       },
     },

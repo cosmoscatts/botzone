@@ -34,7 +34,7 @@ onMounted(() => {
       <div mb-100px>
         <div id="lottie-container" w300px h300px />
         <div class="animate__animated animate__fadeInUpBig animate__faster">
-          <div flex-center>
+          <div flex-c>
             <div id="lottie-logo" h44px />
             <div ml-20px>
               <n-gradient-text
@@ -46,7 +46,7 @@ onMounted(() => {
             </div>
           </div>
 
-          <div flex-center mt-20px text-24px>
+          <div flex-c mt-20px text-24px>
             <n-gradient-text
               :gradient="`linear-gradient(90deg, ${themeVars.successColor} 0%, ${themeVars.warningColor} 33%, ${themeVars.infoColor} 66%, ${themeVars.errorColor} 100%)`"
               :size="24" style="font-weight: bold;"

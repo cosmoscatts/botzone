@@ -1,15 +1,15 @@
 import { BASE_LAYOUT } from '~/layout'
 
 export default {
-  path: '/profile',
+  path: '/bots',
   component: BASE_LAYOUT,
   children: [
     {
       path: '',
-      name: 'Profile',
-      component: () => import('~/pages/profile/index.vue'),
+      name: 'Bots',
+      component: () => import('~/pages/bots/index.vue'),
       meta: {
-        title: '个人资料',
+        title: '我的Bots',
         requiresAuth: true,
       },
     },
