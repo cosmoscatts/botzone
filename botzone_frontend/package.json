@@ -28,6 +28,8 @@
     "@antfu/eslint-config": "^0.34.0",
     "@iconify/json": "^2.1.156",
     "@types/canvas-confetti": "^1.6.0",
+    "@vicons/antd": "^0.12.0",
+    "@vicons/ionicons5": "^0.12.0",
     "@vitejs/plugin-vue": "^4.0.0",
     "eslint": "^8.30.0",
     "typescript": "^4.9.4",

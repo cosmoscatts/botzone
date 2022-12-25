@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <div>Profile</div>
+  <div>Game</div>
 </template>

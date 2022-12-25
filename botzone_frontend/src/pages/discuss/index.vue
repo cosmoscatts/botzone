@@ -2,5 +2,5 @@
 </script>
 
 <template>
-  <div>Profile</div>
+  <div>Discuss</div>
 </template>

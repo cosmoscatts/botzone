@@ -3,7 +3,7 @@ import { commonDark, commonLight } from 'naive-ui'
 import type { ComputedRef } from 'vue'
 import { breakpointsTailwind } from '@vueuse/core'
 import { createPrimaryColor } from '~/utils'
-import { APP_LAYOUT_PARAMS } from '~/config'
+import { APP_LAYOUT_PARAMS } from '~/shared'
 
 // ----- Theme -----
 
