@@ -15,13 +15,11 @@ export default defineConfig({
   },
   plugins: [
     Vue({ reactivityTransform: true }),
-    DefineOptions(),
     AutoImport({
       imports: [
         'vue',
         'vue-router',
         'vue/macros',
-        '@vueuse/head',
         '@vueuse/core',
         'pinia',
       ],
@@ -36,7 +34,9 @@ export default defineConfig({
     Components({
       resolvers: [NaiveUiResolver()],
       dts: 'src/components.d.ts',
+      deep: true,
     }),
+    DefineOptions(),
     UnoCSS(),
   ],
 })

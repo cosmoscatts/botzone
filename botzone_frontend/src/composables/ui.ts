@@ -2,83 +2,19 @@ import type { GlobalThemeOverrides, ThemeCommonVars } from 'naive-ui'
 import { commonDark, commonLight } from 'naive-ui'
 import type { ComputedRef } from 'vue'
 import { breakpointsTailwind } from '@vueuse/core'
-import { createPrimaryColor } from '~/utils'
-import { APP_LAYOUT_PARAMS } from '~/shared'
+// import { createPrimaryColor } from '~/utils'
+// import { APP_LAYOUT_PARAMS } from '~/shared'
 
 // ----- Theme -----
 
 const THEME_MODE_KEY = 'THEME_MODE'
-localStorage.setItem(THEME_MODE_KEY, 'dark') // 默认暗色
+localStorage.setItem(THEME_MODE_KEY, 'light')
 export const isDark = useDark({
   storageKey: THEME_MODE_KEY,
   valueDark: 'dark',
   valueLight: 'light',
 })
 export const toggleDark = useToggle(isDark)
-
-export function useThemeOverrides(): ComputedRef<GlobalThemeOverrides> {
-  const overrides = createPrimaryColor(APP_LAYOUT_PARAMS.primaryColor)
-  return computed<GlobalThemeOverrides>(() => {
-    const bodyColor = ['#ffffff', '#121212'][Number(isDark.value)]
-    const cardColor = ['#fefefe', '#131313'][Number(isDark.value)]
-    const modalColor = ['#ffffff', '#262626'][Number(isDark.value)]
-
-    return {
-      common: { ...overrides },
-      LoadingBar: {
-        colorLoading: APP_LAYOUT_PARAMS.primaryColor,
-      },
-      Layout: {
-        color: bodyColor,
-        headerColor: bodyColor,
-        footerColor: bodyColor,
-      },
-      Card: {
-        color: cardColor,
-        colorModal: modalColor,
-      },
-      Dropdown: {
-        color: modalColor,
-      },
-      DataTable: {
-        thColor: 'transparent',
-        thColorHover: 'transparent',
-        tdColor: 'transparent',
-        tdColorHover: 'transparent',
-      },
-      Dialog: {
-        color: modalColor,
-      },
-      Message: {
-        color: modalColor,
-        colorInfo: modalColor,
-        colorSuccess: modalColor,
-        colorWarning: modalColor,
-        colorError: modalColor,
-        colorLoading: modalColor,
-      },
-      Notification: {
-        color: modalColor,
-      },
-      InternalSelection: {
-        color: modalColor,
-      },
-      InternalSelectMenu: {
-        color: modalColor,
-      },
-      List: {
-        color: cardColor,
-      },
-      Drawer: {
-        color: modalColor,
-      },
-      Tooltip: {
-        color: modalColor,
-        textColor: ['rgb(51, 54, 57)', 'rgba(255, 255, 255, 0.82)'][Number(isDark.value)],
-      },
-    }
-  })
-}
 
 // ----- 响应式 -----
 
@@ -121,14 +57,14 @@ const colorPropertyMap: { [key: string]: string } = {
 }
 
 export function writeThemeColorsToBody() {
-  const overrides = createPrimaryColor(APP_LAYOUT_PARAMS.primaryColor)
+  // const overrides = createPrimaryColor(APP_LAYOUT_PARAMS.primaryColor)
 
   const colors: ThemeCommonVars = isDark.value
     ? commonDark
     : commonLight
   const mergedColors = {
     ...colors,
-    ...overrides,
+    // ...overrides,
   }
   Object.entries(colorPropertyMap).forEach(([key, value]) => {
     document.body.style.setProperty(value, mergedColors[key as keyof ThemeCommonVars])
@@ -139,5 +75,5 @@ watch(isDark, writeThemeColorsToBody)
 
 // ----- Content Height -----
 
-const { navHeight, footHeight, contentPadding } = APP_LAYOUT_PARAMS
-export const diffHeight = computed(() => navHeight + footHeight + contentPadding * 2 + 1 + 1 + 3)
+// const { navHeight, footHeight, contentPadding } = APP_LAYOUT_PARAMS
+// export const diffHeight = computed(() => navHeight + footHeight + contentPadding * 2 + 1 + 1 + 3)

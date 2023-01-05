@@ -7,8 +7,16 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    PreLoadPage: typeof import('./components/PreLoadPage.vue')['default']
+    Battery: typeof import('./components/navbar/Battery.vue')['default']
+    Dock: typeof import('./components/dock/Dock.vue')['default']
+    DockItem: typeof import('./components/dock/DockItem.vue')['default']
+    Item: typeof import('./components/dock/Item.vue')['default']
+    Navbar: typeof import('./components/navbar/Navbar.vue')['default']
+    NavbarItem: typeof import('./components/navbar/NavbarItem.vue')['default']
+    NConfigProvider: typeof import('naive-ui')['NConfigProvider']
+    NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Wifi: typeof import('./components/navbar/Wifi.vue')['default']
   }
 }
