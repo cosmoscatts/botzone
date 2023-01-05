@@ -16,6 +16,7 @@ declare global {
   const AuthApi: typeof import('./server/api/auth')['AuthApi']
   const Conditional: typeof import('./composables/conditional')['Conditional']
   const EffectScope: typeof import('vue')['EffectScope']
+  const G: typeof import('./composables/tools')['G']
   const R: typeof import('./composables/tools')['R']
   const acceptHMRUpdate: typeof import('pinia')['acceptHMRUpdate']
   const asyncComputed: typeof import('@vueuse/core')['asyncComputed']
@@ -59,6 +60,7 @@ declare global {
   const isReactive: typeof import('vue')['isReactive']
   const isReadonly: typeof import('vue')['isReadonly']
   const isRef: typeof import('vue')['isRef']
+  const lodash: typeof import('./composables/tools')['lodash']
   const makeDestructurable: typeof import('@vueuse/core')['makeDestructurable']
   const mapActions: typeof import('pinia')['mapActions']
   const mapGetters: typeof import('pinia')['mapGetters']
@@ -147,7 +149,7 @@ declare global {
   const useBase64: typeof import('@vueuse/core')['useBase64']
   const useBattery: typeof import('@vueuse/core')['useBattery']
   const useBluetooth: typeof import('@vueuse/core')['useBluetooth']
-  const useBoolean: typeof import('./composables/bool')['useBoolean']
+  const useBoolean: typeof import('./composables/state')['useBoolean']
   const useBreakpoints: typeof import('@vueuse/core')['useBreakpoints']
   const useBroadcastChannel: typeof import('@vueuse/core')['useBroadcastChannel']
   const useBrowserLocation: typeof import('@vueuse/core')['useBrowserLocation']
@@ -205,7 +207,7 @@ declare global {
   const useKeyModifier: typeof import('@vueuse/core')['useKeyModifier']
   const useLastChanged: typeof import('@vueuse/core')['useLastChanged']
   const useLink: typeof import('vue-router')['useLink']
-  const useLoading: typeof import('./composables/bool')['useLoading']
+  const useLoading: typeof import('./composables/state')['useLoading']
   const useLocalStorage: typeof import('@vueuse/core')['useLocalStorage']
   const useLottie: typeof import('./composables/lottie')['useLottie']
   const useMagicKeys: typeof import('@vueuse/core')['useMagicKeys']
@@ -254,6 +256,7 @@ declare global {
   const useSorted: typeof import('@vueuse/core')['useSorted']
   const useSpeechRecognition: typeof import('@vueuse/core')['useSpeechRecognition']
   const useSpeechSynthesis: typeof import('@vueuse/core')['useSpeechSynthesis']
+  const useState: typeof import('./composables/state')['useState']
   const useStepper: typeof import('@vueuse/core')['useStepper']
   const useStorage: typeof import('@vueuse/core')['useStorage']
   const useStorageAsync: typeof import('@vueuse/core')['useStorageAsync']
@@ -327,6 +330,7 @@ declare module 'vue' {
     readonly AuthApi: UnwrapRef<typeof import('./server/api/auth')['AuthApi']>
     readonly Conditional: UnwrapRef<typeof import('./composables/conditional')['Conditional']>
     readonly EffectScope: UnwrapRef<typeof import('vue')['EffectScope']>
+    readonly G: UnwrapRef<typeof import('./composables/tools')['G']>
     readonly R: UnwrapRef<typeof import('./composables/tools')['R']>
     readonly acceptHMRUpdate: UnwrapRef<typeof import('pinia')['acceptHMRUpdate']>
     readonly asyncComputed: UnwrapRef<typeof import('@vueuse/core')['asyncComputed']>
@@ -370,6 +374,7 @@ declare module 'vue' {
     readonly isReactive: UnwrapRef<typeof import('vue')['isReactive']>
     readonly isReadonly: UnwrapRef<typeof import('vue')['isReadonly']>
     readonly isRef: UnwrapRef<typeof import('vue')['isRef']>
+    readonly lodash: UnwrapRef<typeof import('./composables/tools')['lodash']>
     readonly makeDestructurable: UnwrapRef<typeof import('@vueuse/core')['makeDestructurable']>
     readonly mapActions: UnwrapRef<typeof import('pinia')['mapActions']>
     readonly mapGetters: UnwrapRef<typeof import('pinia')['mapGetters']>
@@ -458,7 +463,7 @@ declare module 'vue' {
     readonly useBase64: UnwrapRef<typeof import('@vueuse/core')['useBase64']>
     readonly useBattery: UnwrapRef<typeof import('@vueuse/core')['useBattery']>
     readonly useBluetooth: UnwrapRef<typeof import('@vueuse/core')['useBluetooth']>
-    readonly useBoolean: UnwrapRef<typeof import('./composables/bool')['useBoolean']>
+    readonly useBoolean: UnwrapRef<typeof import('./composables/state')['useBoolean']>
     readonly useBreakpoints: UnwrapRef<typeof import('@vueuse/core')['useBreakpoints']>
     readonly useBroadcastChannel: UnwrapRef<typeof import('@vueuse/core')['useBroadcastChannel']>
     readonly useBrowserLocation: UnwrapRef<typeof import('@vueuse/core')['useBrowserLocation']>
@@ -516,7 +521,7 @@ declare module 'vue' {
     readonly useKeyModifier: UnwrapRef<typeof import('@vueuse/core')['useKeyModifier']>
     readonly useLastChanged: UnwrapRef<typeof import('@vueuse/core')['useLastChanged']>
     readonly useLink: UnwrapRef<typeof import('vue-router')['useLink']>
-    readonly useLoading: UnwrapRef<typeof import('./composables/bool')['useLoading']>
+    readonly useLoading: UnwrapRef<typeof import('./composables/state')['useLoading']>
     readonly useLocalStorage: UnwrapRef<typeof import('@vueuse/core')['useLocalStorage']>
     readonly useLottie: UnwrapRef<typeof import('./composables/lottie')['useLottie']>
     readonly useMagicKeys: UnwrapRef<typeof import('@vueuse/core')['useMagicKeys']>
@@ -565,6 +570,7 @@ declare module 'vue' {
     readonly useSorted: UnwrapRef<typeof import('@vueuse/core')['useSorted']>
     readonly useSpeechRecognition: UnwrapRef<typeof import('@vueuse/core')['useSpeechRecognition']>
     readonly useSpeechSynthesis: UnwrapRef<typeof import('@vueuse/core')['useSpeechSynthesis']>
+    readonly useState: UnwrapRef<typeof import('./composables/state')['useState']>
     readonly useStepper: UnwrapRef<typeof import('@vueuse/core')['useStepper']>
     readonly useStorage: UnwrapRef<typeof import('@vueuse/core')['useStorage']>
     readonly useStorageAsync: UnwrapRef<typeof import('@vueuse/core')['useStorageAsync']>

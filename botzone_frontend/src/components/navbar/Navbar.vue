@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
-
+interface NavbarState {
+  date: Date
+  showAppleMenu: boolean
+  showControlCenter: boolean
+  showWifiMenu: boolean
+}
 const props = defineProps<{
   title: string
   setSpotlightBtnRef: (value: Ref<HTMLDivElement>) => void
@@ -9,14 +14,21 @@ const props = defineProps<{
 }>()
 
 const uiStore = useUiStore()
-const { bool: showWifiMenu, toggle: toggleWifiMenu } = useBoolean()
+const state = reactive<NavbarState>({
+  date: new Date(),
+  showAppleMenu: false,
+  showControlCenter: false,
+  showWifiMenu: false,
+})
+// const toggleAppleMenu = (value: boolean) => state.showAppleMenu = !state.showAppleMenu
+// const toggleControlCenter = (value: boolean) => state.showControlCenter = !state.showControlCenter
+const toggleWifiMenu = () => state.showWifiMenu = !state.showWifiMenu
 </script>
 
 <template>
   <div
     wfull hstack h8 px2 fixed top-0 flex justify-between
     text="sm white" bg="gray-700/10" backdrop-blur-2xl shadow transition
-    bg-red
     :class="`${
       props.hide ? 'z-0' : 'z-20'
     }`"
@@ -58,6 +70,6 @@ const { bool: showWifiMenu, toggle: toggleWifiMenu } = useBoolean()
         <span>{{ formatDate({ date: new Date(), pattern: 'h:mm ' }) }}</span>
       </NavbarItem>
     </div>
-    <WifiMenu v-if="showWifiMenu" />
+    <WifiMenu v-if="state.showWifiMenu" />
   </div>
 </template>

@@ -1,18 +1,21 @@
 import dayjs from 'dayjs'
+import lodash from 'lodash'
 import type { ConfigProviderProps } from 'naive-ui'
 import {
   createDiscreteApi,
   darkTheme,
   lightTheme,
 } from 'naive-ui'
-import { R } from '~/utils'
+import { G, R } from '~/utils'
 
 const isDevelopment = import.meta.env.MODE === 'development'
 
 export {
   dayjs,
+  lodash,
   isDevelopment,
   R,
+  G,
 }
 
 // ----- Naive Ui Global API -----
