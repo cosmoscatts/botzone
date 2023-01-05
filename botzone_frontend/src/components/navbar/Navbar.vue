@@ -7,13 +7,19 @@ const props = defineProps<{
   hide: boolean
   toggleSpotlight: () => void
 }>()
+
+const uiStore = useUiStore()
+const { bool: showWifiMenu, toggle: toggleWifiMenu } = useBoolean()
 </script>
 
 <template>
   <div
-    :class="`wfull hstack h8 px2 fixed top0 justify-between ${
+    wfull hstack h8 px2 fixed top-0 flex justify-between
+    text="sm white" bg="gray-700/10" backdrop-blur-2xl shadow transition
+    bg-red
+    :class="`${
       props.hide ? 'z-0' : 'z-20'
-    } text-sm text-white bg-gray-700/10 backdrop-blur-2xl shadow transition`"
+    }`"
   >
     <div hstack space-x-1>
       <NavbarItem px2>
@@ -26,36 +32,32 @@ const props = defineProps<{
       </NavbarItem>
     </div>
 
-    <div className="hstack flex-row justify-end space-x-2">
-      <TopBarItem hide-on-mobile="{true}">
+    <div hstack flex-row justify-end space-x-2>
+      <NavbarItem hide-on-mobile>
         <Battery />
-      </TopBarItem>
-      <TopBarItem
-        ref="{wifiBtnRef}"
-        hide-on-mobile="{true}"
-        force-hover="{state.showWifiMenu}"
-        on-click="{toggleWifiMenu}"
+      </NavbarItem>
+      <NavbarItem
+        :hide-on-mobile="true"
+        :on-click="toggleWifiMenu"
       >
-        {wifi ? (
-        <span className="i-material-symbols:wifi text-lg" />
-        ) : (
-        <span className="i-material-symbols:wifi-off text-lg" />
-        )}
-      </TopBarItem>
-      <TopBarItem>
-        <span className="i-bx:search text-[17px]" />
-      </TopBarItem>
-      <!-- <TopBarItem
+        <span :class="`${['i-material-symbols:wifi-off', 'i-material-symbols:wifi'][Number(uiStore.wifi)]} text-lg`" />
+      </NavbarItem>
+
+      <NavbarItem>
+        <span i-bx:search text-17px />
+      </NavbarItem>
+      <!-- <NavbarItem
           forceHover={state.showControlCenter}
           onClick={toggleControlCenter}
           ref={controlCenterBtnRef}
         >
           <CCMIcon size={16} />
-        </TopBarItem> -->
-      <TopBarItem>
-        <span>{format(state.date, "eee MMM d")}</span>
-        <span>{format(state.date, "h:mm aa")}</span>
-      </TopBarItem>
+        </NavbarItem> -->
+      <NavbarItem>
+        <span>{{ formatDate({ date: new Date(), pattern: 'MMM d' }) }}</span>
+        <span>{{ formatDate({ date: new Date(), pattern: 'h:mm ' }) }}</span>
+      </NavbarItem>
     </div>
+    <WifiMenu v-if="showWifiMenu" />
   </div>
 </template>

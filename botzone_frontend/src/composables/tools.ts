@@ -18,12 +18,12 @@ export {
 // ----- Naive Ui Global API -----
 
 const configProviderProps = computed<ConfigProviderProps>(() => {
-  const { value: themeOverrides } = useThemeOverrides()
+  // const { value: themeOverrides } = useThemeOverrides()
   return {
     theme: isDark.value
       ? darkTheme
       : lightTheme,
-    themeOverrides,
+    // themeOverrides,
   }
 })
 export const $discrete_api = createDiscreteApi(

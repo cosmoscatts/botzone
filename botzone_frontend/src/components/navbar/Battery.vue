@@ -1,17 +1,17 @@
 <script setup lang="ts">
-const battery = $(useBattery())
-const width = computed(() => 0.1 + battery.level * 0.96)
+const battery = useBattery()
+const width = computed(() => 0.1 + battery.level.value * 0.96)
 const color = computed(() => {
-  if (battery.charging) return 'bg-green-400'
-  if (battery.level < 0.2) return 'bg-red-500'
-  else if (battery.level < 0.5) return 'bg-yellow-500'
+  if (battery.charging.value) return 'bg-green-400'
+  if (battery.level.value < 0.2) return 'bg-red-500'
+  else if (battery.level.value < 0.5) return 'bg-yellow-500'
   else return 'bg-white'
 })
 </script>
 
 <template>
   <div hstack space-x-2>
-    <span text-xs>{(batteryState.level * 100).toFixed()}%</span>
+    <span text-xs>{{ (battery.level.value * 100).toFixed() }}%</span>
     <div relative hstack>
       <span i-bi:battery text-2xl />
       <div

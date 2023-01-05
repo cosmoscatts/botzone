@@ -10,13 +10,15 @@ declare module '@vue/runtime-core' {
     Battery: typeof import('./components/navbar/Battery.vue')['default']
     Dock: typeof import('./components/dock/Dock.vue')['default']
     DockItem: typeof import('./components/dock/DockItem.vue')['default']
-    Item: typeof import('./components/dock/Item.vue')['default']
     Navbar: typeof import('./components/navbar/Navbar.vue')['default']
     NavbarItem: typeof import('./components/navbar/NavbarItem.vue')['default']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
+    NPopover: typeof import('naive-ui')['NPopover']
+    NSwitch: typeof import('naive-ui')['NSwitch']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     Wifi: typeof import('./components/navbar/Wifi.vue')['default']
+    WifiMenu: typeof import('./components/navbar/WifiMenu.vue')['default']
   }
 }

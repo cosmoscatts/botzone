@@ -15,7 +15,7 @@ const hover = computed(() => props.forceHover
 
 <template>
   <div
-    :class="`hstack space-x-1 h-6 px-1 cursor-default rounded cursor-pointer ${hide} ${hover} ${props.className}`"
+    :class="`hstack space-x-1 h6 px1 rounded cursor-pointer ${hide} ${hover} ${props.className}`"
     @click="props.onClick"
     @mouseenter="props.onMouseEnter"
   >
