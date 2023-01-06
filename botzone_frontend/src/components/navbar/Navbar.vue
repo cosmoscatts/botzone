@@ -20,7 +20,27 @@ const setAudioVolume = (value: number) => {
   controls.volume(value / 100)
 }
 const setSiteBrightness = (value: number) => uiStore.setBrightness(value)
-useIntervalFn(() => uiStore.setDate(new Date()), 60 * 1000)
+useIntervalFn(() => uiStore.setDate(new Date()), 10 * 1000)
+
+const logout = (): void => {
+  controls.pause()
+  // props.setLogin(false)
+}
+
+const shut = (e: MouseEvent): void => {
+  controls.pause()
+  // props.shutMac(e)
+}
+
+const restart = (e: MouseEvent): void => {
+  controls.pause()
+  // props.restartMac(e)
+}
+
+const sleep = (e: MouseEvent): void => {
+  controls.pause()
+  // props.sleepMac(e)
+}
 </script>
 
 <template>
@@ -32,7 +52,10 @@ useIntervalFn(() => uiStore.setDate(new Date()), 60 * 1000)
     }`"
   >
     <div hstack space-x-1>
-      <NavbarItem px2>
+      <NavbarItem
+        px2 :force-hover="uiStore.state.showAppleMenu"
+        @click="uiStore.toggleAppleMenu"
+      >
         <span i-ri:apple-fill text-base />
       </NavbarItem>
       <NavbarItem
@@ -42,11 +65,21 @@ useIntervalFn(() => uiStore.setDate(new Date()), 60 * 1000)
       </NavbarItem>
     </div>
 
+    <AppleMenu
+      v-if="uiStore.state.showAppleMenu"
+      :logout="{ logout }"
+      :shut="{ shut }"
+      :restart="{ restart }"
+      :sleep="{ sleep }"
+      :toggle-apple-menu="uiStore.toggleAppleMenu"
+    />
+
     <div hstack flex-row justify-end space-x-2>
       <NavbarItem hide-on-mobile>
         <Battery />
       </NavbarItem>
       <NavbarItem
+        :force-hover="uiStore.state.showWifiMenu"
         :hide-on-mobile="true"
         :on-click="uiStore.toggleWifiMenu"
       >
@@ -71,8 +104,8 @@ useIntervalFn(() => uiStore.setDate(new Date()), 60 * 1000)
         </svg>
       </NavbarItem>
       <NavbarItem>
-        <span>{{ formatDate({ date: new Date(), pattern: 'MMM d' }) }}</span>
-        <span>{{ formatDate({ date: new Date(), pattern: 'h:mm ' }) }}</span>
+        <span>{{ formatDate({ date: uiStore.state.date, pattern: 'MMM d' }) }}</span>
+        <span>{{ formatDate({ date: uiStore.state.date, pattern: 'h:mm ' }) }}</span>
       </NavbarItem>
     </div>
     <WifiMenu v-if="uiStore.state.showWifiMenu" />
