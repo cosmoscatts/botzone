@@ -7,18 +7,20 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
+    AppleMenu: typeof import('./components/navbar/AppleMenu.vue')['default']
+    AppleMenuItem: typeof import('./components/navbar/AppleMenuItem.vue')['default']
+    AppleMenuItemGroup: typeof import('./components/navbar/AppleMenuItemGroup.vue')['default']
     Battery: typeof import('./components/navbar/Battery.vue')['default']
+    ControlCenterMenu: typeof import('./components/navbar/ControlCenterMenu.vue')['default']
     Dock: typeof import('./components/dock/Dock.vue')['default']
     DockItem: typeof import('./components/dock/DockItem.vue')['default']
     Navbar: typeof import('./components/navbar/Navbar.vue')['default']
     NavbarItem: typeof import('./components/navbar/NavbarItem.vue')['default']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
     NLoadingBarProvider: typeof import('naive-ui')['NLoadingBarProvider']
-    NPopover: typeof import('naive-ui')['NPopover']
     NSwitch: typeof import('naive-ui')['NSwitch']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    Wifi: typeof import('./components/navbar/Wifi.vue')['default']
     WifiMenu: typeof import('./components/navbar/WifiMenu.vue')['default']
   }
 }

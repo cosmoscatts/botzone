@@ -1,11 +1,7 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
-interface NavbarState {
-  date: Date
-  showAppleMenu: boolean
-  showControlCenter: boolean
-  showWifiMenu: boolean
-}
+import { music } from '~/configs'
+
 const props = defineProps<{
   title: string
   setSpotlightBtnRef: (value: Ref<HTMLDivElement>) => void
@@ -13,16 +9,18 @@ const props = defineProps<{
   toggleSpotlight: () => void
 }>()
 
-const uiStore = useUiStore()
-const state = reactive<NavbarState>({
-  date: new Date(),
-  showAppleMenu: false,
-  showControlCenter: false,
-  showWifiMenu: false,
+const [_, audioState, controls] = useAudio({
+  src: music.audio,
+  autoReplay: true,
 })
-// const toggleAppleMenu = (value: boolean) => state.showAppleMenu = !state.showAppleMenu
-// const toggleControlCenter = (value: boolean) => state.showControlCenter = !state.showControlCenter
-const toggleWifiMenu = () => state.showWifiMenu = !state.showWifiMenu
+
+const uiStore = useUiStore()
+const setAudioVolume = (value: number) => {
+  uiStore.setVolume(value)
+  controls.volume(value / 100)
+}
+const setSiteBrightness = (value: number) => uiStore.setBrightness(value)
+useIntervalFn(() => uiStore.setDate(new Date()), 60 * 1000)
 </script>
 
 <template>
@@ -50,7 +48,7 @@ const toggleWifiMenu = () => state.showWifiMenu = !state.showWifiMenu
       </NavbarItem>
       <NavbarItem
         :hide-on-mobile="true"
-        :on-click="toggleWifiMenu"
+        :on-click="uiStore.toggleWifiMenu"
       >
         <span :class="`${['i-material-symbols:wifi-off', 'i-material-symbols:wifi'][Number(uiStore.wifi)]} text-lg`" />
       </NavbarItem>
@@ -58,18 +56,33 @@ const toggleWifiMenu = () => state.showWifiMenu = !state.showWifiMenu
       <NavbarItem>
         <span i-bx:search text-17px />
       </NavbarItem>
-      <!-- <NavbarItem
-          forceHover={state.showControlCenter}
-          onClick={toggleControlCenter}
-          ref={controlCenterBtnRef}
+      <NavbarItem
+        :force-hover="uiStore.state.showControlCenter"
+        :on-click="uiStore.toggleControlCenter"
+      >
+        <svg
+          viewBox="0 0 29 29"
+          width="16"
+          height="16"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="currentColor"
         >
-          <CCMIcon size={16} />
-        </NavbarItem> -->
+          <path d="M7.5,13h14a5.5,5.5,0,0,0,0-11H7.5a5.5,5.5,0,0,0,0,11Zm0-9h14a3.5,3.5,0,0,1,0,7H7.5a3.5,3.5,0,0,1,0-7Zm0,6A2.5,2.5,0,1,0,5,7.5,2.5,2.5,0,0,0,7.5,10Zm14,6H7.5a5.5,5.5,0,0,0,0,11h14a5.5,5.5,0,0,0,0-11Zm1.43439,8a2.5,2.5,0,1,1,2.5-2.5A2.5,2.5,0,0,1,22.93439,24Z" />
+        </svg>
+      </NavbarItem>
       <NavbarItem>
         <span>{{ formatDate({ date: new Date(), pattern: 'MMM d' }) }}</span>
         <span>{{ formatDate({ date: new Date(), pattern: 'h:mm ' }) }}</span>
       </NavbarItem>
     </div>
-    <WifiMenu v-if="state.showWifiMenu" />
+    <WifiMenu v-if="uiStore.state.showWifiMenu" />
+    <ControlCenterMenu
+      v-if="uiStore.state.showControlCenter"
+      :playing="audioState.playing"
+      :toggle-audio="controls.toggle"
+      :set-volume="setAudioVolume"
+      :set-brightness="setSiteBrightness"
+      :toggle-control-center="uiStore.toggleControlCenter"
+    />
   </div>
 </template>

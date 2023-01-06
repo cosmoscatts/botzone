@@ -1,1 +1,2 @@
-export { WallpaperData } from './wallpaper'
+export * from './music'
+export * from './wallpaper'
