@@ -23,69 +23,69 @@ onClickOutside(refEl, uiStore.toggleControlCenter)
     <div cc-grid row-span-2 col-span-2 p-2 flex="~ col" justify-around>
       <div hstack space-x-2>
         <div
-          :class="`${uiStore.wifi ? 'cc-btn' : 'cc-btn-active'}`"
+          :class="`${uiStore.wifi ? 'cc-btn' : 'cc-btn-active'}`" cursor-pointer
           @click="uiStore.toggleWIFI"
         >
           <span i-material-symbols:wifi text-base />
         </div>
         <div flex flex-col pt-0.5>
           <span font-medium leading-4>Wi-Fi</span>
-          <span cc-text>{{ uiStore.wifi ? "Home" : "Off" }}</span>
+          <span cc-text>{{ uiStore.wifi ? "家庭" : "关闭" }}</span>
         </div>
       </div>
       <div hstack space-x-2>
         <div
-          :class="`${uiStore.bluetooth ? 'cc-btn' : 'cc-btn-active'}`"
+          :class="`${uiStore.bluetooth ? 'cc-btn' : 'cc-btn-active'}`" cursor-pointer
           @click="uiStore.toggleBluetooth"
         >
           <span i-charm:bluetooth text-base />
         </div>
         <div flex flex-col pt-0.5>
-          <span font-medium leading-4>Bluetooth</span>
-          <span cc-text>{{ uiStore.bluetooth ? "On" : "Off" }}</span>
+          <span font-medium leading-4>蓝牙</span>
+          <span cc-text>{{ uiStore.bluetooth ? "打开" : "关闭" }}</span>
         </div>
       </div>
       <div hstack space-x-2>
         <div
-          :class="`${uiStore.airdrop ? 'cc-btn' : 'cc-btn-active'}`"
+          :class="`${uiStore.airdrop ? 'cc-btn' : 'cc-btn-active'}`" cursor-pointer
           @click="uiStore.toggleAirdrop"
         >
           <span i-material-symbols:rss-feed-rounded text-base />
         </div>
         <div flex flex-col pt-0.5>
-          <span font-medium leading-4>AirDrop</span>
-          <span cc-text>{{ uiStore.airdrop ? "Contacts Only" : "Off" }}</span>
+          <span font-medium leading-4>隔空投送</span>
+          <span cc-text>{{ uiStore.airdrop ? "仅限联系人" : "关闭" }}</span>
         </div>
       </div>
     </div>
     <div cc-grid col-span-2 p-2 hstack space-x-2>
       <div
-        :class="`${isDark ? 'cc-btn' : 'cc-btn-active'}`"
+        :class="`${isDark ? 'cc-btn' : 'cc-btn-active'}`" cursor-pointer
         @click="toggleDark()"
       >
         <span text-base i-ion:sunny dark:i-ion:moon />
       </div>
       <div flex="~ col">
         <span font-medium ml1>
-          {{ isDark ? "Dark Mode" : "Light Mode" }}
+          {{ isDark ? "暗色模式" : "亮色模式" }}
         </span>
       </div>
     </div>
-    <div cc-grid p2 flex="c col" text-center>
+    <div cc-grid p2 flex="c col" text-center cursor-pointer>
       <span i-bi:brightness-alt-high text-xl />
-      <span text-xs leading-3.5>Keyboard Brightness</span>
+      <span text-xs leading-3.5>键盘亮度</span>
     </div>
     <div
-      cc-grid p2 flex="c col" text-center cursor-default
+      cc-grid p2 flex="c col" text-center cursor-pointer
       @click="uiStore.toggleFullScreen"
     >
       <span text-base :class="['i-bi:fullscreen', 'i-bi:fullscreen-exit'][Number(uiStore.fullscreen)] " />
       <span text-xs leading-3.5 mt-1.5>
-        {{ uiStore.fullscreen ? "Exit Fullscreen" : "Enter Fullscreen" }}
+        {{ uiStore.fullscreen ? "关闭全屏" : "进入全屏" }}
       </span>
     </div>
     <div cc-grid col-span-4 px2.5 py2 space-y-1 flex="~ col" justify-around>
-      <span font-medium ml-0.5>Display</span>
+      <span font-medium ml-0.5>显示器</span>
       <SliderComponent
         icon="i-ion:sunny"
         :value="uiStore.brightness"
@@ -93,7 +93,7 @@ onClickOutside(refEl, uiStore.toggleControlCenter)
       />
     </div>
     <div cc-grid col-span-4 px2.5 py2 space-y-1 flex="~ col" justify-around>
-      <span font-medium ml-0.5>Sound</span>
+      <span font-medium ml-0.5>声音</span>
       <SliderComponent
         icon="i-ion:volume-high"
         value="{volume}"

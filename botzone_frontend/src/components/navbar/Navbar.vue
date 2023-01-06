@@ -87,7 +87,7 @@ const sleep = (e: MouseEvent): void => {
       </NavbarItem>
 
       <NavbarItem>
-        <span i-bx:search text-17px />
+        <span i-bx:search text-17px mt1px />
       </NavbarItem>
       <NavbarItem
         :force-hover="uiStore.state.showControlCenter"
@@ -105,7 +105,7 @@ const sleep = (e: MouseEvent): void => {
       </NavbarItem>
       <NavbarItem>
         <span>{{ formatDate({ date: uiStore.state.date, pattern: 'MMM d' }) }}</span>
-        <span>{{ formatDate({ date: uiStore.state.date, pattern: 'h:mm ' }) }}</span>
+        <span>{{ formatDate({ date: uiStore.state.date, pattern: 'h:mm A' }) }}</span>
       </NavbarItem>
     </div>
     <WifiMenu v-if="uiStore.state.showWifiMenu" />

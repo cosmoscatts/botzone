@@ -13,35 +13,35 @@ onClickOutside(refEl, props.toggleAppleMenu)
 <template>
   <div ref="refEl" menu-box left-2 w56>
     <AppleMenuItemGroup>
-      <AppleMenuItem>About This Mac</AppleMenuItem>
+      <AppleMenuItem>关于本机</AppleMenuItem>
     </AppleMenuItemGroup>
     <AppleMenuItemGroup>
-      <AppleMenuItem>System Preferences...</AppleMenuItem>
+      <AppleMenuItem>系统偏好设置...</AppleMenuItem>
       <AppleMenuItem>App Store...</AppleMenuItem>
     </AppleMenuItemGroup>
     <AppleMenuItemGroup>
-      <AppleMenuItem>Recent Items</AppleMenuItem>
+      <AppleMenuItem>最近使用的项目</AppleMenuItem>
     </AppleMenuItemGroup>
     <AppleMenuItemGroup>
-      <AppleMenuItem>Force Quit...</AppleMenuItem>
+      <AppleMenuItem>强制退出...</AppleMenuItem>
     </AppleMenuItemGroup>
     <AppleMenuItemGroup>
       <AppleMenuItem :on-click="sleep">
-        Sleep
+        睡眠
       </AppleMenuItem>
       <AppleMenuItem :on-click="restart">
-        Restart...
+        重新启动...
       </AppleMenuItem>
       <AppleMenuItem :on-click="shut">
-        Shut Down...
+        关机...
       </AppleMenuItem>
     </AppleMenuItemGroup>
     <AppleMenuItemGroup :border="false">
       <AppleMenuItem :on-click="logout">
-        Lock Screen
+        锁定屏幕
       </AppleMenuItem>
       <AppleMenuItem :on-click="logout">
-        Log Out Admin...
+        退出登录 Admin...
       </AppleMenuItem>
     </AppleMenuItemGroup>
   </div>

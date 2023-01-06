@@ -1,11 +1,6 @@
 import dayjs from 'dayjs'
 import lodash from 'lodash'
-import type { ConfigProviderProps } from 'naive-ui'
-import {
-  createDiscreteApi,
-  darkTheme,
-  lightTheme,
-} from 'naive-ui'
+
 import { G, R } from '~/utils'
 
 const isDevelopment = import.meta.env.MODE === 'development'
@@ -18,26 +13,6 @@ export {
   G,
 }
 
-// ----- Naive Ui Global API -----
-
-const configProviderProps = computed<ConfigProviderProps>(() => {
-  // const { value: themeOverrides } = useThemeOverrides()
-  return {
-    theme: isDark.value
-      ? darkTheme
-      : lightTheme,
-    // themeOverrides,
-  }
-})
-export const $discrete_api = createDiscreteApi(
-  ['message', 'dialog', 'notification', 'loadingBar'],
-  { configProviderProps },
-)
-export const $dialog = $discrete_api.dialog
-export const $message = $discrete_api.message
-export const $notification = $discrete_api.notification
-export const $loadingBar = $discrete_api.loadingBar
-
 // ----- 格式化时间 -----
 
 export const formatDate = ({
@@ -46,7 +21,7 @@ export const formatDate = ({
 }: {
   date?: Date | string | number
   pattern?: string
-}) => dayjs(date).format(pattern)
+}): string => dayjs(date).format(pattern)
 
 // ----- Confirm 确认框 -----
 

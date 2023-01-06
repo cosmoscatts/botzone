@@ -7,14 +7,17 @@ import Desktop from '~/pages/desktop/index.vue'
 
 hljs.registerLanguage('java', java)
 
-// 主题和自定义主题覆盖
-const theme = computed(() => [null, darkTheme][Number(isDark.value)])
 const login = ref(true)
+
+const theme = computed(() => [null, darkTheme][Number(isDark.value)])
+const themeOverrides = useThemeOverrides()
+writeThemeColorsToBody() // 将 naive-ui 自带颜色写入 body
 </script>
 
 <template>
   <n-config-provider
     :theme="theme"
+    :theme-overrides="themeOverrides"
     :locale="zhCN"
     :date-locale="dateZhCN"
     :hljs="hljs"

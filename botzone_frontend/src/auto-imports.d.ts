@@ -5,11 +5,11 @@ declare global {
   const $: typeof import('vue/macros')['$']
   const $computed: typeof import('vue/macros')['$computed']
   const $customRef: typeof import('vue/macros')['$customRef']
-  const $dialog: typeof import('./composables/tools')['$dialog']
-  const $discrete_api: typeof import('./composables/tools')['$discrete_api']
-  const $loadingBar: typeof import('./composables/tools')['$loadingBar']
-  const $message: typeof import('./composables/tools')['$message']
-  const $notification: typeof import('./composables/tools')['$notification']
+  const $dialog: typeof import('./composables/ui')['$dialog']
+  const $discrete_api: typeof import('./composables/ui')['$discrete_api']
+  const $loadingBar: typeof import('./composables/ui')['$loadingBar']
+  const $message: typeof import('./composables/ui')['$message']
+  const $notification: typeof import('./composables/ui')['$notification']
   const $ref: typeof import('vue/macros')['$ref']
   const $shallowRef: typeof import('vue/macros')['$shallowRef']
   const $toRef: typeof import('vue/macros')['$toRef']
@@ -267,6 +267,7 @@ declare global {
   const useTextDirection: typeof import('@vueuse/core')['useTextDirection']
   const useTextSelection: typeof import('@vueuse/core')['useTextSelection']
   const useTextareaAutosize: typeof import('@vueuse/core')['useTextareaAutosize']
+  const useThemeOverrides: typeof import('./composables/ui')['useThemeOverrides']
   const useThrottle: typeof import('@vueuse/core')['useThrottle']
   const useThrottleFn: typeof import('@vueuse/core')['useThrottleFn']
   const useThrottledRefHistory: typeof import('@vueuse/core')['useThrottledRefHistory']
@@ -319,11 +320,11 @@ declare module 'vue' {
     readonly $: UnwrapRef<typeof import('vue/macros')['$']>
     readonly $computed: UnwrapRef<typeof import('vue/macros')['$computed']>
     readonly $customRef: UnwrapRef<typeof import('vue/macros')['$customRef']>
-    readonly $dialog: UnwrapRef<typeof import('./composables/tools')['$dialog']>
-    readonly $discrete_api: UnwrapRef<typeof import('./composables/tools')['$discrete_api']>
-    readonly $loadingBar: UnwrapRef<typeof import('./composables/tools')['$loadingBar']>
-    readonly $message: UnwrapRef<typeof import('./composables/tools')['$message']>
-    readonly $notification: UnwrapRef<typeof import('./composables/tools')['$notification']>
+    readonly $dialog: UnwrapRef<typeof import('./composables/ui')['$dialog']>
+    readonly $discrete_api: UnwrapRef<typeof import('./composables/ui')['$discrete_api']>
+    readonly $loadingBar: UnwrapRef<typeof import('./composables/ui')['$loadingBar']>
+    readonly $message: UnwrapRef<typeof import('./composables/ui')['$message']>
+    readonly $notification: UnwrapRef<typeof import('./composables/ui')['$notification']>
     readonly $ref: UnwrapRef<typeof import('vue/macros')['$ref']>
     readonly $shallowRef: UnwrapRef<typeof import('vue/macros')['$shallowRef']>
     readonly $toRef: UnwrapRef<typeof import('vue/macros')['$toRef']>
@@ -581,6 +582,7 @@ declare module 'vue' {
     readonly useTextDirection: UnwrapRef<typeof import('@vueuse/core')['useTextDirection']>
     readonly useTextSelection: UnwrapRef<typeof import('@vueuse/core')['useTextSelection']>
     readonly useTextareaAutosize: UnwrapRef<typeof import('@vueuse/core')['useTextareaAutosize']>
+    readonly useThemeOverrides: UnwrapRef<typeof import('./composables/ui')['useThemeOverrides']>
     readonly useThrottle: UnwrapRef<typeof import('@vueuse/core')['useThrottle']>
     readonly useThrottleFn: UnwrapRef<typeof import('@vueuse/core')['useThrottleFn']>
     readonly useThrottledRefHistory: UnwrapRef<typeof import('@vueuse/core')['useThrottledRefHistory']>
