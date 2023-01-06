@@ -86,18 +86,18 @@ onClickOutside(refEl, uiStore.toggleControlCenter)
     </div>
     <div cc-grid col-span-4 px2.5 py2 space-y-1 flex="~ col" justify-around>
       <span font-medium ml-0.5>显示器</span>
-      <SliderComponent
+      <CCMSlider
+        v-model:value="uiStore.brightness"
         icon="i-ion:sunny"
-        :value="uiStore.brightness"
-        set-value="{setBrightness}"
+        :set-value="props.setBrightness"
       />
     </div>
     <div cc-grid col-span-4 px2.5 py2 space-y-1 flex="~ col" justify-around>
       <span font-medium ml-0.5>声音</span>
-      <SliderComponent
+      <CCMSlider
+        v-model:value="uiStore.volume"
         icon="i-ion:volume-high"
-        value="{volume}"
-        set-value="{setVolume}"
+        :set-value="props.setVolume"
       />
     </div>
     <div cc-grid col-span-4 p2 pr4 hstack flex-row justify-between space-x-2.5>
@@ -107,7 +107,7 @@ onClickOutside(refEl, uiStore.toggleControlCenter)
         <span cc-text>{{ music.artist }}</span>
       </div>
       <span
-        :class="`${['i-bi:play-fill', 'i-bi:pause-fill'][Number(props.playing)]}`" text-2xl
+        :class="`${['i-bi:play-fill', 'i-bi:pause-fill'][Number(props.playing)]}`" text-2xl cursor-pointer
         @click="props.toggleAudio"
       />
     </div>
