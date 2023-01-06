@@ -3,6 +3,7 @@ interface NavbarState {
   showAppleMenu: boolean
   showControlCenter: boolean
   showWifiMenu: boolean
+  showNotch: boolean
 }
 
 export const useUiStore = defineStore('uiStore', () => {
@@ -17,6 +18,7 @@ export const useUiStore = defineStore('uiStore', () => {
     showAppleMenu: false,
     showControlCenter: false,
     showWifiMenu: false,
+    showNotch: true,
   })
   return {
     volume,
@@ -36,6 +38,7 @@ export const useUiStore = defineStore('uiStore', () => {
     toggleAppleMenu: () => state.showAppleMenu = !state.showAppleMenu,
     toggleControlCenter: () => state.showControlCenter = !state.showControlCenter,
     toggleWifiMenu: () => state.showWifiMenu = !state.showWifiMenu,
+    toggleNotch: () => state.showNotch = !state.showNotch,
   }
 }, { persist: { enabled: true } })
 

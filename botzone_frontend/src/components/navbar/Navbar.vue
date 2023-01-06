@@ -46,11 +46,17 @@ const sleep = (e: MouseEvent): void => {
 <template>
   <div
     wfull hstack h8 px2 fixed top-0 flex justify-between
-    text="sm white" bg="gray-700/10" backdrop-blur-2xl shadow transition
+    text="sm [#1C1C1C] dark:white" bg="gray-100/30 dark:gray-700/30" backdrop-blur-12px shadow transition
     :class="`${
       props.hide ? 'z-0' : 'z-20'
     }`"
   >
+    <Transition name="fade">
+      <div v-if="uiStore.state.showNotch" class="notch">
+        <span i-twemoji-face-with-monocle text-1.2rem />
+      </div>
+    </Transition>
+
     <div hstack space-x-1>
       <NavbarItem
         px2 :force-hover="uiStore.state.showAppleMenu"
@@ -86,7 +92,7 @@ const sleep = (e: MouseEvent): void => {
         <span :class="`${['i-material-symbols:wifi-off', 'i-material-symbols:wifi'][Number(uiStore.wifi)]} text-lg`" />
       </NavbarItem>
 
-      <NavbarItem>
+      <NavbarItem hide-on-mobile>
         <span i-bx:search text-17px mt1px />
       </NavbarItem>
       <NavbarItem
@@ -119,3 +125,52 @@ const sleep = (e: MouseEvent): void => {
     />
   </div>
 </template>
+
+<style scoped lang="less">
+.notch {
+    display: grid;
+    place-items: center;
+
+    position: absolute;
+    top: 0;
+    left: 50%;
+
+    width:  140px;
+    height: 95%;
+
+    background-color: #222;
+    border-radius: 0 0 0.5rem 0.5rem;
+    transform: translateX(-50%);
+
+    & > span {
+      opacity: 0;
+
+      transition: opacity 0.2s ease-in-out;
+    }
+
+    &:hover {
+      & > span {
+        opacity: 1;
+      }
+    }
+
+    // for outward curves
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      height: 16px;
+      width: 16px;
+      border-radius: 50%;
+    }
+    &::before {
+      left: -16px;
+      box-shadow: 8px -8px #222;
+    }
+    &::after {
+      right: -16px;
+      box-shadow: -8px -8px #222;
+    }
+  }
+</style>

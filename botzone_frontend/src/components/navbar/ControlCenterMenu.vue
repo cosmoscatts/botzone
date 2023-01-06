@@ -71,15 +71,20 @@ onClickOutside(refEl, uiStore.toggleControlCenter)
         </span>
       </div>
     </div>
-    <div cc-grid p2 flex="c col" text-center cursor-pointer>
-      <span i-bi:brightness-alt-high text-xl />
-      <span text-xs leading-3.5>键盘亮度</span>
+    <div
+      cc-grid p2 flex="c col" text-center cursor-pointer
+      @click="uiStore.toggleNotch"
+    >
+      <span i-pepicons-smartphone-notch text-xl />
+      <span text-xs leading-3.5 mt-1.5>
+        {{ uiStore.state.showNotch ? '关闭缺口' : '打开缺口' }}
+      </span>
     </div>
     <div
       cc-grid p2 flex="c col" text-center cursor-pointer
       @click="uiStore.toggleFullScreen"
     >
-      <span text-base :class="['i-bi:fullscreen', 'i-bi:fullscreen-exit'][Number(uiStore.fullscreen)] " />
+      <span text-xl :class="['i-mingcute-fullscreen-line', 'i-mingcute-fullscreen-exit-line'][Number(uiStore.fullscreen)] " />
       <span text-xs leading-3.5 mt-1.5>
         {{ uiStore.fullscreen ? "关闭全屏" : "进入全屏" }}
       </span>
