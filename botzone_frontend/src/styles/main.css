@@ -11,7 +11,7 @@ html, body, #root {
   @apply w-screen h-screen overflow-hidden;
 }
 
-// transition
+/* transition */
 
 .fade-slide-leave-active,
 .fade-slide-enter-active {

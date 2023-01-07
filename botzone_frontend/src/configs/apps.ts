@@ -11,7 +11,7 @@ export const apps: AppData[] = [
     id: 'bear',
     title: 'Bear',
     desktop: true,
-    show: true,
+    show: false,
     width: 860,
     height: 500,
     img: 'img/icons/bear.png',
