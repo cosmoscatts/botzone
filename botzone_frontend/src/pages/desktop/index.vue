@@ -9,7 +9,7 @@ const systemStore = useSystemStore()
     w-screen h-screen of-hidden bg-center bg-cover
     :style="{
       backgroundImage: `url(${isDark ? wallpapers.night : wallpapers.day})`,
-      filter: `brightness( ${systemStore.brightness * 0.7 + 50}% )`,
+      filter: `brightness( ${Math.max(50, systemStore.brightness)}% )`,
     }"
   >
     <Navbar />

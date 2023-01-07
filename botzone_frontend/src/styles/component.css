@@ -7,15 +7,15 @@
 /* --------- spotlight --------- */
 
 .spotlight {
-  --apply-at: fixed z-20 h-max top-1/4 -mt-16 w-165 -ml-82.5 left-1/2 rounded-lg backdrop-blur-2xl shadow-2xl shadow-black/40 c-bg-100/80 border menu-border;
+  --at-apply: fixed z-20 h-max top-1/4 -mt-16 w-165 -ml-82.5 left-1/2 rounded-lg backdrop-blur-2xl shadow-2xl shadow-black/40 c-bg-100/80 border menu-border;
 }
 
 .spotlight input::placeholder {
-  --apply-at: c-text-black/40;
+  --at-apply: c-text-black/40;
 }
 
 .spotlight .spotlight-type {
-  --apply-at: relative hstack pl-2.5 py-2 text-xs leading-none c-text-500 font-medium;
+  --at-apply: relative hstack pl-2.5 py-2 text-xs leading-none c-text-500 font-medium;
 }
 
 @media (max-width: 639px) {
@@ -71,20 +71,20 @@
 }
 
 .slider .n-slider .n-slider-rail {
-  --apply-at: c-bg-300 w-full h-full shadow-none m0 p0 rounded-r-full border-t border-r border-b border-transparent;
+  --at-apply: c-bg-300 w-full h-full shadow-none m0 p0 rounded-r-full border-t border-r border-b border-transparent;
 }
 
 .slider .n-slider .n-slider-rail__fill{
-  --apply-at: c-bg-100 h-full shadow-none rounded-none rounded-r-2;
+  --at-apply: c-bg-100 h-full shadow-none rounded-none rounded-r-2;
 }
 
 .slider .n-slider:hover .n-slider-rail__fill,
 .slider .n-slider:focus-within .n-slider-rail__fill {
-  --apply-at: c-bg-100;
+  --at-apply: c-bg-100;
 }
 
 .slider .n-slider .n-slider-handles .n-slider-handle-wrapper .n-slider-handle {
-  --apply-at: border c-border-300 outline-none h-7 w-7 text-white bg-white;
+  --at-apply: border c-border-300 outline-none h-7 w-7 text-white bg-white;
   box-shadow: -3px 0px 8px 0px rgba(17, 17, 17, 0.15);
 }
 
