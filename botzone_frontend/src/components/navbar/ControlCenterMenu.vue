@@ -9,8 +9,8 @@ const props = defineProps<{
 }>()
 
 const refEl = ref()
-const uiStore = useUiStore()
-onClickOutside(refEl, uiStore.toggleControlCenter)
+const systemStore = useSystemStore()
+onClickOutside(refEl, systemStore.toggleControlCenter)
 </script>
 
 <template>
@@ -23,38 +23,38 @@ onClickOutside(refEl, uiStore.toggleControlCenter)
     <div cc-grid row-span-2 col-span-2 p-2 flex="~ col" justify-around>
       <div hstack space-x-2>
         <div
-          :class="`${uiStore.wifi ? 'cc-btn' : 'cc-btn-active'}`" cursor-pointer
-          @click="uiStore.toggleWIFI"
+          :class="`${systemStore.wifi ? 'cc-btn' : 'cc-btn-active'}`" cursor-pointer
+          @click="systemStore.toggleWIFI"
         >
           <span i-material-symbols:wifi text-base />
         </div>
         <div flex flex-col pt-0.5>
           <span font-medium leading-4>Wi-Fi</span>
-          <span cc-text>{{ uiStore.wifi ? "家庭" : "关闭" }}</span>
+          <span cc-text>{{ systemStore.wifi ? "家庭" : "关闭" }}</span>
         </div>
       </div>
       <div hstack space-x-2>
         <div
-          :class="`${uiStore.bluetooth ? 'cc-btn' : 'cc-btn-active'}`" cursor-pointer
-          @click="uiStore.toggleBluetooth"
+          :class="`${systemStore.bluetooth ? 'cc-btn' : 'cc-btn-active'}`" cursor-pointer
+          @click="systemStore.toggleBluetooth"
         >
           <span i-charm:bluetooth text-base />
         </div>
         <div flex flex-col pt-0.5>
           <span font-medium leading-4>蓝牙</span>
-          <span cc-text>{{ uiStore.bluetooth ? "打开" : "关闭" }}</span>
+          <span cc-text>{{ systemStore.bluetooth ? "打开" : "关闭" }}</span>
         </div>
       </div>
       <div hstack space-x-2>
         <div
-          :class="`${uiStore.airdrop ? 'cc-btn' : 'cc-btn-active'}`" cursor-pointer
-          @click="uiStore.toggleAirdrop"
+          :class="`${systemStore.airdrop ? 'cc-btn' : 'cc-btn-active'}`" cursor-pointer
+          @click="systemStore.toggleAirdrop"
         >
           <span i-material-symbols:rss-feed-rounded text-base />
         </div>
         <div flex flex-col pt-0.5>
           <span font-medium leading-4>隔空投送</span>
-          <span cc-text>{{ uiStore.airdrop ? "仅限联系人" : "关闭" }}</span>
+          <span cc-text>{{ systemStore.airdrop ? "仅限联系人" : "关闭" }}</span>
         </div>
       </div>
     </div>
@@ -73,26 +73,26 @@ onClickOutside(refEl, uiStore.toggleControlCenter)
     </div>
     <div
       cc-grid p2 flex="c col" text-center cursor-pointer
-      @click="uiStore.toggleNotch"
+      @click="systemStore.toggleNotch"
     >
       <span i-pepicons-smartphone-notch text-xl />
       <span text-xs leading-3.5 mt-1.5>
-        {{ uiStore.state.showNotch ? '关闭缺口' : '打开缺口' }}
+        {{ systemStore.state.showNotch ? '关闭缺口' : '打开缺口' }}
       </span>
     </div>
     <div
       cc-grid p2 flex="c col" text-center cursor-pointer
-      @click="uiStore.toggleFullScreen"
+      @click="systemStore.toggleFullScreen"
     >
-      <span text-xl :class="['i-mingcute-fullscreen-line', 'i-mingcute-fullscreen-exit-line'][Number(uiStore.fullscreen)] " />
+      <span text-xl :class="['i-mingcute-fullscreen-line', 'i-mingcute-fullscreen-exit-line'][Number(systemStore.fullscreen)] " />
       <span text-xs leading-3.5 mt-1.5>
-        {{ uiStore.fullscreen ? "关闭全屏" : "进入全屏" }}
+        {{ systemStore.fullscreen ? "关闭全屏" : "进入全屏" }}
       </span>
     </div>
     <div cc-grid col-span-4 px2.5 py2 space-y-1 flex="~ col" justify-around>
       <span font-medium ml-0.5>显示器</span>
       <CCMSlider
-        v-model:value="uiStore.brightness"
+        v-model:value="systemStore.brightness"
         icon="i-ion:sunny"
         :set-value="props.setBrightness"
       />
@@ -100,7 +100,7 @@ onClickOutside(refEl, uiStore.toggleControlCenter)
     <div cc-grid col-span-4 px2.5 py2 space-y-1 flex="~ col" justify-around>
       <span font-medium ml-0.5>声音</span>
       <CCMSlider
-        v-model:value="uiStore.volume"
+        v-model:value="systemStore.volume"
         icon="i-ion:volume-high"
         :set-value="props.setVolume"
       />

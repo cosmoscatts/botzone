@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { wallpapers } from '~/configs'
 
-const uiStore = useUiStore()
+const systemStore = useSystemStore()
 </script>
 
 <template>
@@ -9,7 +9,7 @@ const uiStore = useUiStore()
     w-screen h-screen of-hidden bg-center bg-cover
     :style="{
       backgroundImage: `url(${isDark ? wallpapers.night : wallpapers.day})`,
-      filter: `brightness( ${uiStore.brightness * 0.7 + 50}% )`,
+      filter: `brightness( ${systemStore.brightness * 0.7 + 50}% )`,
     }"
   >
     <Navbar />

@@ -6,7 +6,7 @@ interface NavbarState {
   showNotch: boolean
 }
 
-export const useUiStore = defineStore('uiStore', () => {
+export const useSystemStore = defineStore('systemStore', () => {
   const volume = ref(100)
   const brightness = ref(80)
   const wifi = ref(true)
@@ -43,5 +43,5 @@ export const useUiStore = defineStore('uiStore', () => {
 }, { persist: { enabled: true } })
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useUiStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useSystemStore, import.meta.hot))
 }

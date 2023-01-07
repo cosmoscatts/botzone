@@ -14,13 +14,13 @@ const [_, audioState, controls] = useAudio({
   autoReplay: true,
 })
 
-const uiStore = useUiStore()
+const systemStore = useSystemStore()
 const setAudioVolume = (value: number) => {
-  uiStore.setVolume(value)
+  systemStore.setVolume(value)
   controls.volume(value / 100)
 }
-const setSiteBrightness = (value: number) => uiStore.setBrightness(value)
-useIntervalFn(() => uiStore.setDate(new Date()), 10 * 1000)
+const setSiteBrightness = (value: number) => systemStore.setBrightness(value)
+useIntervalFn(() => systemStore.setDate(new Date()), 10 * 1000)
 
 const logout = (): void => {
   controls.pause()
@@ -45,22 +45,22 @@ const sleep = (e: MouseEvent): void => {
 
 <template>
   <div
-    wfull hstack h8 px2 fixed top-0 flex justify-between
+    wfull hstack h7 px2 fixed top-0 flex justify-between
     text="sm [#1C1C1C] dark:white" bg="gray-100/30 dark:gray-700/30" backdrop-blur-12px shadow transition
     :class="`${
       props.hide ? 'z-0' : 'z-20'
     }`"
   >
     <Transition name="fade">
-      <div v-if="uiStore.state.showNotch" class="notch">
+      <div v-if="systemStore.state.showNotch" class="notch">
         <span i-twemoji-face-with-monocle text-1.2rem />
       </div>
     </Transition>
 
     <div hstack space-x-1>
       <NavbarItem
-        px2 :force-hover="uiStore.state.showAppleMenu"
-        @click="uiStore.toggleAppleMenu"
+        px2 :force-hover="systemStore.state.showAppleMenu"
+        @click="systemStore.toggleAppleMenu"
       >
         <span i-ri:apple-fill text-base />
       </NavbarItem>
@@ -72,12 +72,12 @@ const sleep = (e: MouseEvent): void => {
     </div>
 
     <AppleMenu
-      v-if="uiStore.state.showAppleMenu"
+      v-if="systemStore.state.showAppleMenu"
       :logout="{ logout }"
       :shut="{ shut }"
       :restart="{ restart }"
       :sleep="{ sleep }"
-      :toggle-apple-menu="uiStore.toggleAppleMenu"
+      :toggle-apple-menu="systemStore.toggleAppleMenu"
     />
 
     <div hstack flex-row justify-end space-x-2>
@@ -85,19 +85,19 @@ const sleep = (e: MouseEvent): void => {
         <Battery />
       </NavbarItem>
       <NavbarItem
-        :force-hover="uiStore.state.showWifiMenu"
+        :force-hover="systemStore.state.showWifiMenu"
         :hide-on-mobile="true"
-        :on-click="uiStore.toggleWifiMenu"
+        :on-click="systemStore.toggleWifiMenu"
       >
-        <span :class="`${['i-material-symbols:wifi-off', 'i-material-symbols:wifi'][Number(uiStore.wifi)]} text-lg`" />
+        <span :class="`${['i-material-symbols:wifi-off', 'i-material-symbols:wifi'][Number(systemStore.wifi)]} text-lg`" />
       </NavbarItem>
 
       <NavbarItem hide-on-mobile>
         <span i-bx:search text-17px mt1px />
       </NavbarItem>
       <NavbarItem
-        :force-hover="uiStore.state.showControlCenter"
-        :on-click="uiStore.toggleControlCenter"
+        :force-hover="systemStore.state.showControlCenter"
+        :on-click="systemStore.toggleControlCenter"
       >
         <svg
           viewBox="0 0 29 29"
@@ -110,18 +110,18 @@ const sleep = (e: MouseEvent): void => {
         </svg>
       </NavbarItem>
       <NavbarItem>
-        <span>{{ formatDate({ date: uiStore.state.date, pattern: 'MMM d' }) }}</span>
-        <span>{{ formatDate({ date: uiStore.state.date, pattern: 'h:mm A' }) }}</span>
+        <span>{{ formatDate({ date: systemStore.state.date, pattern: 'MMM d' }) }}</span>
+        <span>{{ formatDate({ date: systemStore.state.date, pattern: 'h:mm A' }) }}</span>
       </NavbarItem>
     </div>
-    <WifiMenu v-if="uiStore.state.showWifiMenu" />
+    <WifiMenu v-if="systemStore.state.showWifiMenu" />
     <ControlCenterMenu
-      v-if="uiStore.state.showControlCenter"
+      v-if="systemStore.state.showControlCenter"
       :playing="audioState.playing"
       :toggle-audio="controls.toggle"
       :set-volume="setAudioVolume"
       :set-brightness="setSiteBrightness"
-      :toggle-control-center="uiStore.toggleControlCenter"
+      :toggle-control-center="systemStore.toggleControlCenter"
     />
   </div>
 </template>

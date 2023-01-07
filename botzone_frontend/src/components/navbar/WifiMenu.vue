@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const refEl = ref()
-const uiStore = useUiStore()
-onClickOutside(refEl, uiStore.toggleWifiMenu)
+const systemStore = useSystemStore()
+onClickOutside(refEl, systemStore.toggleWifiMenu)
 </script>
 
 <template>
@@ -10,7 +10,7 @@ onClickOutside(refEl, uiStore.toggleWifiMenu)
       Wi-Fi
     </div>
     <div w="1/5" py2 text-center>
-      <n-switch v-model:value="uiStore.wifi" />
+      <n-switch v-model:value="systemStore.wifi" />
     </div>
   </div>
 </template>
