@@ -1,13 +1,8 @@
 <script setup lang="ts">
-const props = defineProps<{
-  logout: () => void
-  shut: (e: MouseEvent) => void
-  restart: (e: MouseEvent) => void
-  sleep: (e: MouseEvent) => void
-  toggleAppleMenu: () => void
-}>()
 const refEl = ref()
-onClickOutside(refEl, props.toggleAppleMenu)
+const authStore = useAuthStore()
+const systemStore = useSystemStore()
+onClickOutside(refEl, systemStore.toggleAppleMenu)
 </script>
 
 <template>
@@ -26,21 +21,21 @@ onClickOutside(refEl, props.toggleAppleMenu)
       <AppleMenuItem>强制退出...</AppleMenuItem>
     </AppleMenuItemGroup>
     <AppleMenuItemGroup>
-      <AppleMenuItem :on-click="sleep">
+      <AppleMenuItem @click="authStore.sleepMac">
         睡眠
       </AppleMenuItem>
-      <AppleMenuItem :on-click="restart">
+      <AppleMenuItem @click="authStore.restartMac">
         重新启动...
       </AppleMenuItem>
-      <AppleMenuItem :on-click="shut">
+      <AppleMenuItem @click="authStore.shutMac">
         关机...
       </AppleMenuItem>
     </AppleMenuItemGroup>
     <AppleMenuItemGroup :border="false">
-      <AppleMenuItem :on-click="logout">
+      <AppleMenuItem :on-click="authStore.logout">
         锁定屏幕
       </AppleMenuItem>
-      <AppleMenuItem :on-click="logout">
+      <AppleMenuItem :on-click="authStore.logout">
         退出登录 Admin...
       </AppleMenuItem>
     </AppleMenuItemGroup>

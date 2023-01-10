@@ -12,12 +12,13 @@ const brightness = computed(() => {
 
 <template>
   <div
-    w-screen h-screen of-hidden bg-center bg-cover
+    w-screen h-screen of-hidden bg="center cover"
     :style="{
       backgroundImage: `url(${isDark ? wallpapers.night : wallpapers.day})`,
       filter: `brightness( ${brightness}% )`,
     }"
   >
     <Navbar />
+    <!-- <Dock /> -->
   </div>
 </template>

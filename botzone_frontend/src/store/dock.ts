@@ -8,3 +8,7 @@ export const useDockStore = defineStore('dockStore', () => {
     setDockMag: (value: number) => mag.value = value,
   }
 }, { persist: { enabled: true } })
+
+if (import.meta.hot) {
+  import.meta.hot.accept(acceptHMRUpdate(useDockStore, import.meta.hot))
+}

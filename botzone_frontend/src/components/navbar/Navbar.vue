@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { Ref } from 'vue'
-import { music } from '~/configs'
 
 const props = defineProps<{
   title: string
@@ -9,38 +8,9 @@ const props = defineProps<{
   toggleSpotlight: () => void
 }>()
 
-const [_, audioState, controls] = useAudio({
-  src: music.audio,
-  autoReplay: true,
-})
-
 const systemStore = useSystemStore()
-const setAudioVolume = (value: number) => {
-  systemStore.setVolume(value)
-  controls.volume(value / 100)
-}
 const setSiteBrightness = (value: number) => systemStore.setBrightness(value)
 useIntervalFn(() => systemStore.setDate(new Date()), 10 * 1000)
-
-const logout = (): void => {
-  controls.pause()
-  // props.setLogin(false)
-}
-
-const shut = (e: MouseEvent): void => {
-  controls.pause()
-  // props.shutMac(e)
-}
-
-const restart = (e: MouseEvent): void => {
-  controls.pause()
-  // props.restartMac(e)
-}
-
-const sleep = (e: MouseEvent): void => {
-  controls.pause()
-  // props.sleepMac(e)
-}
 </script>
 
 <template>
@@ -73,11 +43,6 @@ const sleep = (e: MouseEvent): void => {
 
     <AppleMenu
       v-if="systemStore.state.showAppleMenu"
-      :logout="{ logout }"
-      :shut="{ shut }"
-      :restart="{ restart }"
-      :sleep="{ sleep }"
-      :toggle-apple-menu="systemStore.toggleAppleMenu"
     />
 
     <div hstack flex-row justify-end space-x-2>
@@ -117,9 +82,9 @@ const sleep = (e: MouseEvent): void => {
     <WifiMenu v-if="systemStore.state.showWifiMenu" />
     <ControlCenterMenu
       v-if="systemStore.state.showControlCenter"
-      :playing="audioState.playing"
-      :toggle-audio="controls.toggle"
-      :set-volume="setAudioVolume"
+      :playing="systemStore.audio.playing"
+      :toggle-audio="systemStore.audio.controls.toggle"
+      :set-volume="systemStore.setAudioVolume"
       :set-brightness="setSiteBrightness"
       :toggle-control-center="systemStore.toggleControlCenter"
     />

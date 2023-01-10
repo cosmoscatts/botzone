@@ -58,13 +58,13 @@ export const apps: AppData[] = [
     title: 'Mail',
     desktop: false,
     img: 'img/icons/mail.png',
-    link: 'mailto:renovamenzxh@gmail.com',
+    // link: '',
   },
   {
     id: 'github',
     title: 'Github',
     desktop: false,
     img: 'img/icons/github.png',
-    link: 'https://github.com/Renovamen/playground-macos',
+    link: 'https://github.com/cosmoscatts/botzone',
   },
 ]

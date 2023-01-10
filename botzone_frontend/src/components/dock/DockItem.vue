@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
 const props = defineProps<{
   id: string
   title: string
@@ -15,64 +14,65 @@ const props = defineProps<{
 
 const refImg = ref()
 
-const useDockHoverAnimation = (
-  mouseX: number,
-  ref: RefObject<HTMLImageElement>,
-  dockSize: number,
-  dockMag: number,
-) => {
-  const distanceLimit = dockSize * 6
-  const distanceInput = [
-    -distanceLimit,
-    -distanceLimit / (dockMag * 0.65),
-    -distanceLimit / (dockMag * 0.85),
-    0,
-    distanceLimit / (dockMag * 0.85),
-    distanceLimit / (dockMag * 0.65),
-    distanceLimit,
-  ]
-  const widthOutput = [
-    dockSize,
-    dockSize * (dockMag * 0.55),
-    dockSize * (dockMag * 0.75),
-    dockSize * dockMag,
-    dockSize * (dockMag * 0.75),
-    dockSize * (dockMag * 0.55),
-    dockSize,
-  ]
-  const beyondTheDistanceLimit = distanceLimit + 1
+// const useDockHoverAnimation = (
+//   mouseX: number,
+//   ref: RefObject<HTMLImageElement>,
+//   dockSize: number,
+//   dockMag: number,
+// ) => {
+//   const distanceLimit = dockSize * 6
+//   const distanceInput = [
+//     -distanceLimit,
+//     -distanceLimit / (dockMag * 0.65),
+//     -distanceLimit / (dockMag * 0.85),
+//     0,
+//     distanceLimit / (dockMag * 0.85),
+//     distanceLimit / (dockMag * 0.65),
+//     distanceLimit,
+//   ]
+//   const widthOutput = [
+//     dockSize,
+//     dockSize * (dockMag * 0.55),
+//     dockSize * (dockMag * 0.75),
+//     dockSize * dockMag,
+//     dockSize * (dockMag * 0.75),
+//     dockSize * (dockMag * 0.55),
+//     dockSize,
+//   ]
+//   const beyondTheDistanceLimit = distanceLimit + 1
 
-  const distance = useMotionValue(beyondTheDistanceLimit)
-  const widthPX = useSpring(
-    useTransform(distance, distanceInput, widthOutput),
-    {
-      stiffness: 1700,
-      damping: 90,
-    },
-  )
+//   const distance = useMotionValue(beyondTheDistanceLimit)
+//   const widthPX = useSpring(
+//     useTransform(distance, distanceInput, widthOutput),
+//     {
+//       stiffness: 1700,
+//       damping: 90,
+//     },
+//   )
 
-  const width = useTransform(widthPX, width => `${width / 16}rem`)
+//   const width = useTransform(widthPX, width => `${width / 16}rem`)
 
-  useRaf(() => {
-    const el = ref.current
-    const mouseXVal = mouseX.get()
-    if (el && mouseXVal !== null) {
-      const rect = el.getBoundingClientRect()
-      const imgCenterX = rect.left + rect.width / 2
-      // difference between the x coordinate value of the mouse pointer
-      // and the img center x coordinate value
-      const distanceDelta = mouseXVal - imgCenterX
-      distance.set(distanceDelta)
-      return
-    }
+//   useRaf(() => {
+//     const el = ref.current
+//     const mouseXVal = mouseX.get()
+//     if (el && mouseXVal !== null) {
+//       const rect = el.getBoundingClientRect()
+//       const imgCenterX = rect.left + rect.width / 2
+//       // difference between the x coordinate value of the mouse pointer
+//       // and the img center x coordinate value
+//       const distanceDelta = mouseXVal - imgCenterX
+//       distance.set(distanceDelta)
+//       return
+//     }
 
-    distance.set(beyondTheDistanceLimit)
-  }, true)
+//     distance.set(beyondTheDistanceLimit)
+//   }, true)
 
-  return { width, widthPX }
-}
+//   return { width, widthPX }
+// }
 
-const { width } = useDockHoverAnimation(mouseX, imgRef, dockSize, dockMag)
+// const { width } = useDockHoverAnimation(mouseX, imgRef, dockSize, dockMag)
+const width = ref(50)
 const { width: winWidth } = useWindowSize()
 const click = () => {
   if (props.desktop || props.id === 'launchpad') {

@@ -10,15 +10,15 @@ const props = defineProps<{
   toggleLaunchpad: (target: boolean) => void
   hide: boolean
 }>()
-
+console.log(apps)
 const dockStore = useDockStore()
 
 const openApp = (id: string) => {
-  if (id === 'launchpad') props.toggleLaunchpad(!props.showLaunchpad)
-  else {
-    props.toggleLaunchpad(false)
-    props.open(id)
-  }
+  // if (id === 'launchpad') props?.toggleLaunchpad(!props.showLaunchpad)
+  // else {
+  //   props.toggleLaunchpad(false)
+  //   props.open(id)
+  // }
 }
 
 const mouseX = ref<number | null>(null)

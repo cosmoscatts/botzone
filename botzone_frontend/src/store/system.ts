@@ -1,3 +1,5 @@
+import { music } from '~/configs'
+
 interface NavbarState {
   date: Date
   showAppleMenu: boolean
@@ -20,6 +22,11 @@ export const useSystemStore = defineStore('systemStore', () => {
     showWifiMenu: false,
     showNotch: true,
   })
+  const [, audioState, controls] = useAudio({
+    src: music.audio,
+    autoReplay: true,
+  })
+  const setVolume = (data: number) => volume.value = data
   return {
     volume,
     brightness,
@@ -29,7 +36,10 @@ export const useSystemStore = defineStore('systemStore', () => {
     fullscreen,
     state,
     toggleFullScreen,
-    setVolume: (data: number) => volume.value = data,
+    audio: {
+      controls,
+      ...audioState,
+    },
     setBrightness: (data: number) => brightness.value = data,
     toggleWIFI: () => wifi.value = !wifi.value,
     toggleBluetooth: () => bluetooth.value = !bluetooth.value,
@@ -39,6 +49,10 @@ export const useSystemStore = defineStore('systemStore', () => {
     toggleControlCenter: () => state.showControlCenter = !state.showControlCenter,
     toggleWifiMenu: () => state.showWifiMenu = !state.showWifiMenu,
     toggleNotch: () => state.showNotch = !state.showNotch,
+    setAudioVolume: (value: number) => {
+      setVolume(value)
+      controls.volume(value / 100)
+    },
   }
 }, { persist: { enabled: true } })
 
