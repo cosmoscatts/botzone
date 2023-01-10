@@ -2,13 +2,9 @@
 import { wallpapers } from '~/configs'
 
 const authStore = useAuthStore()
-
 const password = ref('')
-const setPassword = (value: string) => password.value = value
-
 const sign = ref('点击登录')
 const setSign = (value: string) => sign.value = value
-
 const loginHandle = () => {
   if (['', '123456'].includes(password.value)) {
     authStore.setLogin(true)
@@ -18,10 +14,6 @@ const loginHandle = () => {
 }
 const keyPress = (e: KeyboardEvent) => {
   if (e.key === 'Enter') loginHandle()
-}
-
-const handleInputChange = (e: Event): void => {
-  setPassword(e.target!.value)
 }
 </script>
 
@@ -50,14 +42,14 @@ const handleInputChange = (e: Event): void => {
         rounded-md backdrop-blur-2xl bg="gray-300/50"
       >
         <input
-          text-sm text-white col-start-1 col-span-4
-          no-outline bg-transparent px2
+          v-model="password"
+          text-sm text-white col-start-1
+          col-span-4 no-outline bg-transparent
+          px2
           type="password"
           placeholder="Enter Password"
-          :value="password"
           @click="(e) => e.stopPropagation()"
           @keypress="keyPress"
-          @change="handleInputChange"
         >
         <div col-start-5 col-span-1 flex-c>
           <span i-bi:question-square-fill text-white ml1 />
@@ -80,7 +72,7 @@ const handleInputChange = (e: Event): void => {
         <span>睡眠</span>
       </div>
       <div
-        hstack flex-col text-white w-24 cursor-pointer
+        hstack flex-col text-white w24 cursor-pointer
         @click="authStore.restartMac"
       >
         <div flex-c h10 w10 bg-gray-700 rounded-full>

@@ -5,14 +5,13 @@ const props = defineProps<{
   img: string
   mouseX: number
   desktop: boolean
-  openApp: (id: string) => void
   isOpen: boolean
   link?: string
-  dockSize: number
-  dockMag: number
 }>()
 
 const refImg = ref()
+const appStore = useAppStore()
+// const dockStore = useDockStore()
 
 // const useDockHoverAnimation = (
 //   mouseX: number,
@@ -76,7 +75,7 @@ const width = ref(50)
 const { width: winWidth } = useWindowSize()
 const click = () => {
   if (props.desktop || props.id === 'launchpad') {
-    props.openApp(props.id)
+    appStore.openApp(props.id)
   }
 }
 </script>
@@ -89,7 +88,7 @@ const click = () => {
     @click="click"
   >
     <p class="tooltip absolute px-3 py-1 rounded-md text-sm c-text-black c-bg-300/80">
-      {title}
+      {{ title }}
     </p>
     <a v-if="props.link" :href="props.link" target="_blank" rel="noreferrer">
       <img
@@ -99,7 +98,7 @@ const click = () => {
         :alt="props.title"
         :title="props.title"
         :draggable="false"
-        :style="winWidth < 640 ? {} : { width, willChange: 'width' }"
+        :style="winWidth < 640 ? {} : { width: `${width}px`, willChange: 'width' }"
       >
     </a>
     <img

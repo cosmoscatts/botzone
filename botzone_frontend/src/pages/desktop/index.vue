@@ -19,6 +19,6 @@ const brightness = computed(() => {
     }"
   >
     <Navbar />
-    <!-- <Dock /> -->
+    <Dock />
   </div>
 </template>

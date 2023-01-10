@@ -5,7 +5,7 @@ export const apps: AppData[] = [
     id: 'launchpad',
     title: 'Launchpad',
     desktop: false,
-    img: 'img/icons/launchpad.png',
+    img: 'imgs/icons/launchpad.png',
   },
   {
     id: 'bear',
@@ -14,7 +14,7 @@ export const apps: AppData[] = [
     show: false,
     width: 860,
     height: 500,
-    img: 'img/icons/bear.png',
+    img: 'imgs/icons/bear.png',
     // content: null
   },
   {
@@ -25,7 +25,7 @@ export const apps: AppData[] = [
     width: 1024,
     minWidth: 375,
     minHeight: 200,
-    img: 'img/icons/safari.png',
+    img: 'imgs/icons/safari.png',
     // content: <Safari />
   },
   {
@@ -33,7 +33,7 @@ export const apps: AppData[] = [
     title: 'VSCode',
     desktop: true,
     show: false,
-    img: 'img/icons/vscode.png',
+    img: 'imgs/icons/vscode.png',
     // content: <VSCode />
   },
   {
@@ -41,7 +41,7 @@ export const apps: AppData[] = [
     title: 'FaceTime',
     desktop: true,
     show: false,
-    img: 'img/icons/facetime.png',
+    img: 'imgs/icons/facetime.png',
     height: 530,
     // content: <FaceTime />
   },
@@ -50,21 +50,21 @@ export const apps: AppData[] = [
     title: 'Terminal',
     desktop: true,
     show: false,
-    img: 'img/icons/terminal.png',
+    img: 'imgs/icons/terminal.png',
     // content: <Terminal />
   },
   {
     id: 'email',
     title: 'Mail',
     desktop: false,
-    img: 'img/icons/mail.png',
+    img: 'imgs/icons/mail.png',
     // link: '',
   },
   {
     id: 'github',
     title: 'Github',
     desktop: false,
-    img: 'img/icons/github.png',
+    img: 'imgs/icons/github.png',
     link: 'https://github.com/cosmoscatts/botzone',
   },
 ]

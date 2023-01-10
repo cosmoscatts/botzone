@@ -6,6 +6,18 @@ interface NavbarState {
   showControlCenter: boolean
   showWifiMenu: boolean
   showNotch: boolean
+  showSpotlight: boolean
+}
+
+const getBaseState = () => {
+  return {
+    date: new Date(),
+    showAppleMenu: false,
+    showControlCenter: false,
+    showWifiMenu: false,
+    showNotch: true,
+    showSpotlight: false,
+  }
 }
 
 export const useSystemStore = defineStore('systemStore', () => {
@@ -15,13 +27,7 @@ export const useSystemStore = defineStore('systemStore', () => {
   const bluetooth = ref(true)
   const airdrop = ref(true)
   const { isFullscreen: fullscreen, toggle: toggleFullScreen } = useFullscreen()
-  const state = reactive<NavbarState>({
-    date: new Date(),
-    showAppleMenu: false,
-    showControlCenter: false,
-    showWifiMenu: false,
-    showNotch: true,
-  })
+  const state = reactive<NavbarState>(getBaseState())
   const [, audioState, controls] = useAudio({
     src: music.audio,
     autoReplay: true,
@@ -49,6 +55,7 @@ export const useSystemStore = defineStore('systemStore', () => {
     toggleControlCenter: () => state.showControlCenter = !state.showControlCenter,
     toggleWifiMenu: () => state.showWifiMenu = !state.showWifiMenu,
     toggleNotch: () => state.showNotch = !state.showNotch,
+    toggleSpotlight: () => state.showSpotlight = !state.showSpotlight,
     setAudioVolume: (value: number) => {
       setVolume(value)
       controls.volume(value / 100)
@@ -57,6 +64,7 @@ export const useSystemStore = defineStore('systemStore', () => {
       state.showAppleMenu = false
       state.showControlCenter = false
       state.showWifiMenu = false
+      state.showSpotlight = false
       controls.pause()
     },
   }
