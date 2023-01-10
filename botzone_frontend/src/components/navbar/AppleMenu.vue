@@ -32,10 +32,10 @@ onClickOutside(refEl, systemStore.toggleAppleMenu)
       </AppleMenuItem>
     </AppleMenuItemGroup>
     <AppleMenuItemGroup :border="false">
-      <AppleMenuItem :on-click="authStore.logout">
+      <AppleMenuItem @click="authStore.logout">
         锁定屏幕
       </AppleMenuItem>
-      <AppleMenuItem :on-click="authStore.logout">
+      <AppleMenuItem @click="authStore.logout">
         退出登录 Admin...
       </AppleMenuItem>
     </AppleMenuItemGroup>

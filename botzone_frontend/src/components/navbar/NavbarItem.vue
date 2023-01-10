@@ -3,8 +3,6 @@ const props = defineProps<{
   hideOnMobile?: boolean
   forceHover?: boolean
   className?: string
-  onClick?: () => void
-  onMouseEnter?: () => void
 }>()
 
 const hide = computed(() => props.hideOnMobile ? 'hidden sm:inline-flex' : 'inline-flex')
@@ -14,11 +12,7 @@ const hover = computed(() => props.forceHover
 </script>
 
 <template>
-  <div
-    :class="`hstack space-x-1 h6 px1 rounded cursor-pointer ${hide} ${hover} ${props.className}`"
-    @click="props.onClick"
-    @mouseenter="props.onMouseEnter"
-  >
+  <div :class="`hstack space-x-1 h6 px1 rounded select-none cursor-pointer ${hide} ${hover} ${props.className}`">
     <slot />
   </div>
 </template>

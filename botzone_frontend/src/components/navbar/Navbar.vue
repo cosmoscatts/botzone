@@ -1,21 +1,16 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
-
 const props = defineProps<{
-  title: string
-  setSpotlightBtnRef: (value: Ref<HTMLDivElement>) => void
-  hide: boolean
-  toggleSpotlight: () => void
+  title?: string
+  hide?: boolean
 }>()
 
 const systemStore = useSystemStore()
-const setSiteBrightness = (value: number) => systemStore.setBrightness(value)
 useIntervalFn(() => systemStore.setDate(new Date()), 10 * 1000)
 </script>
 
 <template>
   <div
-    wfull hstack h7 px2 fixed top-0 flex justify-between
+    wfull hstack h8 px2 fixed top-0 flex justify-between
     text="sm [#1C1C1C] dark:white" bg="gray-100/30 dark:gray-700/30" backdrop-blur-12px shadow transition
     :class="`${
       props.hide ? 'z-0' : 'z-20'
@@ -34,25 +29,21 @@ useIntervalFn(() => systemStore.setDate(new Date()), 10 * 1000)
       >
         <span i-ri:apple-fill text-base />
       </NavbarItem>
-      <NavbarItem
-        font-semibold px2
-      >
+      <NavbarItem font-semibold px2>
         Botzone
       </NavbarItem>
     </div>
 
-    <AppleMenu
-      v-if="systemStore.state.showAppleMenu"
-    />
+    <AppleMenu v-if="systemStore.state.showAppleMenu" />
 
     <div hstack flex-row justify-end space-x-2>
       <NavbarItem hide-on-mobile>
         <Battery />
       </NavbarItem>
       <NavbarItem
+        hide-on-mobile
         :force-hover="systemStore.state.showWifiMenu"
-        :hide-on-mobile="true"
-        :on-click="systemStore.toggleWifiMenu"
+        @click="systemStore.toggleWifiMenu"
       >
         <span :class="`${['i-material-symbols:wifi-off', 'i-material-symbols:wifi'][Number(systemStore.wifi)]} text-lg`" />
       </NavbarItem>
@@ -62,7 +53,7 @@ useIntervalFn(() => systemStore.setDate(new Date()), 10 * 1000)
       </NavbarItem>
       <NavbarItem
         :force-hover="systemStore.state.showControlCenter"
-        :on-click="systemStore.toggleControlCenter"
+        @click="systemStore.toggleControlCenter"
       >
         <svg
           viewBox="0 0 29 29"
@@ -80,14 +71,7 @@ useIntervalFn(() => systemStore.setDate(new Date()), 10 * 1000)
       </NavbarItem>
     </div>
     <WifiMenu v-if="systemStore.state.showWifiMenu" />
-    <ControlCenterMenu
-      v-if="systemStore.state.showControlCenter"
-      :playing="systemStore.audio.playing"
-      :toggle-audio="systemStore.audio.controls.toggle"
-      :set-volume="systemStore.setAudioVolume"
-      :set-brightness="setSiteBrightness"
-      :toggle-control-center="systemStore.toggleControlCenter"
-    />
+    <ControlCenterMenu v-if="systemStore.state.showControlCenter" />
   </div>
 </template>
 

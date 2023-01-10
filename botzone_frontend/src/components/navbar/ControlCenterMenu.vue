@@ -1,13 +1,6 @@
 <script setup lang="ts">
 import { music } from '~/configs'
 
-const props = defineProps<{
-  toggleAudio: (value: boolean) => void
-  setBrightness: (value: number) => void
-  setVolume: (value: number) => void
-  playing: boolean
-}>()
-
 const refEl = ref()
 const systemStore = useSystemStore()
 onClickOutside(refEl, systemStore.toggleControlCenter)
@@ -94,7 +87,7 @@ onClickOutside(refEl, systemStore.toggleControlCenter)
       <CCMSlider
         v-model:value="systemStore.brightness"
         icon="i-ion:sunny"
-        :set-value="props.setBrightness"
+        :set-value="systemStore.setBrightness"
       />
     </div>
     <div cc-grid col-span-4 px2.5 py2 space-y-1 flex="~ col" justify-around>
@@ -102,7 +95,7 @@ onClickOutside(refEl, systemStore.toggleControlCenter)
       <CCMSlider
         v-model:value="systemStore.volume"
         icon="i-ion:volume-high"
-        :set-value="props.setVolume"
+        :set-value="systemStore.setAudioVolume"
       />
     </div>
     <div cc-grid col-span-4 p2 pr4 hstack flex-row justify-between space-x-2.5>
@@ -112,8 +105,8 @@ onClickOutside(refEl, systemStore.toggleControlCenter)
         <span cc-text>{{ music.artist }}</span>
       </div>
       <span
-        :class="`${['i-bi:play-fill', 'i-bi:pause-fill'][Number(props.playing)]}`" text-2xl cursor-pointer
-        @click="props.toggleAudio"
+        :class="`${['i-bi:play-fill', 'i-bi:pause-fill'][Number(systemStore.audio.playing)]}`" text-2xl cursor-pointer
+        @click="systemStore.audio.controls.toggle"
       />
     </div>
   </div>

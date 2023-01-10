@@ -6,12 +6,9 @@ const { loading, startLoading, endLoading } = useLoading()
 const percent = ref(0)
 const setPercent = (value = 0) => percent.value = value
 
-watch(
-  [() => authStore.restart, () => authStore.sleep],
-  ([restart, sleep]) => {
-    if (restart && !sleep) startLoading()
-  },
-)
+watch(() => authStore.restart, (val) => {
+  if (val) startLoading()
+}, { immediate: true })
 
 const { pause, resume } = useIntervalFn(() => {
   const newPercent = percent.value + 0.15
@@ -21,18 +18,16 @@ const { pause, resume } = useIntervalFn(() => {
       endLoading()
     }, BOOTING_INTERVAL)
   } else setPercent(newPercent)
-}, LOADING_INTERVAL)
+}, LOADING_INTERVAL, { immediate: false })
 
 watch(loading, (val) => {
   if (val) resume()
   else pause()
-})
+}, { immediate: true })
 
 const handleClick = () => {
   if (authStore.sleep) authStore.setBooting(false)
-  // eslint-disable-next-line no-useless-return
-  else if (authStore.restart || loading.value) return
-  else startLoading()
+  else if (!authStore.restart && !loading.value) startLoading()
 }
 </script>
 
@@ -60,7 +55,7 @@ const handleClick = () => {
       m="t-16 sm:t-20 x-auto"
       text="sm gray-200 center"
     >
-      Click to {{ authStore.sleep ? "wake up" : "boot" }}
+      {{ `点击${['启动', '唤醒'][Number(authStore.sleep)]}` }}
     </div>
   </div>
 </template>
