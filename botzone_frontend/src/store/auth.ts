@@ -15,10 +15,13 @@ export const useAuthStore = defineStore('authStore', () => {
   const setRestart = (value: boolean) => restart.value = value
   const setSleep = (value: boolean) => sleep.value = value
 
+  const closeEffect = () => {
+    const systemStore = useSystemStore()
+    systemStore.closeStateEffect()
+  }
   const shutMac = (e?: MouseEvent): void => {
     e?.stopPropagation()
-    const systemStore = useSystemStore()
-    systemStore.audio.controls.pause()
+    closeEffect()
     setRestart(false)
     setSleep(false)
     setLogin(false)
@@ -26,8 +29,7 @@ export const useAuthStore = defineStore('authStore', () => {
   }
   const restartMac = (e?: MouseEvent): void => {
     e?.stopPropagation()
-    const systemStore = useSystemStore()
-    systemStore.audio.controls.pause()
+    closeEffect()
     setRestart(true)
     setSleep(false)
     setLogin(false)
@@ -35,16 +37,14 @@ export const useAuthStore = defineStore('authStore', () => {
   }
   const sleepMac = (e?: MouseEvent): void => {
     e?.stopPropagation()
-    const systemStore = useSystemStore()
-    systemStore.audio.controls.pause()
+    closeEffect()
     setRestart(false)
     setSleep(true)
     setLogin(false)
     setBooting(true)
   }
   const logout = (): void => {
-    const systemStore = useSystemStore()
-    systemStore.audio.controls.pause()
+    closeEffect()
     setLogin(false)
   }
   return {

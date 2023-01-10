@@ -53,6 +53,12 @@ export const useSystemStore = defineStore('systemStore', () => {
       setVolume(value)
       controls.volume(value / 100)
     },
+    closeStateEffect() {
+      state.showAppleMenu = false
+      state.showControlCenter = false
+      state.showWifiMenu = false
+      controls.pause()
+    },
   }
 }, { persist: { enabled: true } })
 
