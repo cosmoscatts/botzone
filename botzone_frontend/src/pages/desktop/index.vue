@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { wallpapers } from '~/configs'
 
+const appStore = useAppStore()
 const systemStore = useSystemStore()
 const brightness = computed(() => {
   let val = systemStore.brightness * 0.6 + 50
@@ -8,6 +9,7 @@ const brightness = computed(() => {
   val = Math.min(val, 110)
   return val
 })
+appStore.getAppsData()
 </script>
 
 <template>

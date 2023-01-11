@@ -15,6 +15,8 @@ declare module '@vue/runtime-core' {
     ControlCenterMenu: typeof import('./components/navbar/ControlCenterMenu.vue')['default']
     Dock: typeof import('./components/dock/Dock.vue')['default']
     DockItem: typeof import('./components/dock/DockItem.vue')['default']
+    ExitFullIcon: typeof import('./components/window/ExitFullIcon.vue')['default']
+    FullIcon: typeof import('./components/window/FullIcon.vue')['default']
     Navbar: typeof import('./components/navbar/Navbar.vue')['default']
     NavbarItem: typeof import('./components/navbar/NavbarItem.vue')['default']
     NConfigProvider: typeof import('naive-ui')['NConfigProvider']
@@ -23,6 +25,8 @@ declare module '@vue/runtime-core' {
     NSwitch: typeof import('naive-ui')['NSwitch']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    TrafficLights: typeof import('./components/window/TrafficLights.vue')['default']
     WifiMenu: typeof import('./components/navbar/WifiMenu.vue')['default']
+    Window: typeof import('./components/window/Window.vue')['default']
   }
 }
