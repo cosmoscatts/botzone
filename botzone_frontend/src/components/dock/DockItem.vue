@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { interpolate } from 'popmotion'
+import { useSpring } from '@vueuse/motion'
 const props = defineProps<{
   id: string
   title: string
@@ -11,68 +13,58 @@ const props = defineProps<{
 
 const refImg = ref()
 const appStore = useAppStore()
-// const dockStore = useDockStore()
-
-// const useDockHoverAnimation = (
-//   mouseX: number,
-//   ref: RefObject<HTMLImageElement>,
-//   dockSize: number,
-//   dockMag: number,
-// ) => {
-//   const distanceLimit = dockSize * 6
-//   const distanceInput = [
-//     -distanceLimit,
-//     -distanceLimit / (dockMag * 0.65),
-//     -distanceLimit / (dockMag * 0.85),
-//     0,
-//     distanceLimit / (dockMag * 0.85),
-//     distanceLimit / (dockMag * 0.65),
-//     distanceLimit,
-//   ]
-//   const widthOutput = [
-//     dockSize,
-//     dockSize * (dockMag * 0.55),
-//     dockSize * (dockMag * 0.75),
-//     dockSize * dockMag,
-//     dockSize * (dockMag * 0.75),
-//     dockSize * (dockMag * 0.55),
-//     dockSize,
-//   ]
-//   const beyondTheDistanceLimit = distanceLimit + 1
-
-//   const distance = useMotionValue(beyondTheDistanceLimit)
-//   const widthPX = useSpring(
-//     useTransform(distance, distanceInput, widthOutput),
-//     {
-//       stiffness: 1700,
-//       damping: 90,
-//     },
-//   )
-
-//   const width = useTransform(widthPX, width => `${width / 16}rem`)
-
-//   useRaf(() => {
-//     const el = ref.current
-//     const mouseXVal = mouseX.get()
-//     if (el && mouseXVal !== null) {
-//       const rect = el.getBoundingClientRect()
-//       const imgCenterX = rect.left + rect.width / 2
-//       // difference between the x coordinate value of the mouse pointer
-//       // and the img center x coordinate value
-//       const distanceDelta = mouseXVal - imgCenterX
-//       distance.set(distanceDelta)
-//       return
-//     }
-
-//     distance.set(beyondTheDistanceLimit)
-//   }, true)
-
-//   return { width, widthPX }
-// }
-
-// const { width } = useDockHoverAnimation(mouseX, imgRef, dockSize, dockMag)
-const width = ref(50)
+const dockStore = useDockStore()
 const { width: winWidth } = useWindowSize()
+const createDockHoverAnimation = () => {
+  const [dockSize, dockMag] = [dockStore.size, dockStore.mag]
+  const distanceLimit = dockSize * 6
+  const distanceInput = [
+    -distanceLimit,
+    -distanceLimit / (dockMag * 0.65),
+    -distanceLimit / (dockMag * 0.85),
+    0,
+    distanceLimit / (dockMag * 0.85),
+    distanceLimit / (dockMag * 0.65),
+    distanceLimit,
+  ]
+  const widthOutput = [
+    dockSize,
+    dockSize * (dockMag * 0.55),
+    dockSize * (dockMag * 0.75),
+    dockSize * dockMag,
+    dockSize * (dockMag * 0.75),
+    dockSize * (dockMag * 0.55),
+    dockSize,
+  ]
+  const beyondTheDistanceLimit = distanceLimit + 1
+
+  const distance = ref(beyondTheDistanceLimit)
+  const getWidthFromDistance = interpolate(distanceInput, widthOutput)
+  const widthPX = reactive({
+    width: getWidthFromDistance(distance.value),
+  })
+  const { set } = useSpring(widthPX, {
+    stiffness: 1700,
+    damping: 90,
+  })
+  const width = computed(() => `${widthPX.width / 16}rem`)
+
+  useRafFn(() => {
+    const el = refImg.value
+    if (el && props.mouseX !== null) {
+      const rect = el.getBoundingClientRect()
+      const imgCenterX = rect.left + rect.width / 2
+      const distanceDelta = props.mouseX - imgCenterX
+      distance.value = distanceDelta
+    } else {
+      distance.value = beyondTheDistanceLimit
+    }
+    set({ width: getWidthFromDistance(distance.value) })
+  }, { immediate: true })
+  return width
+}
+
+const width = createDockHoverAnimation()
 const click = () => {
   if (props.desktop || props.id === 'launchpad') {
     appStore.openApp(props.id)
@@ -98,7 +90,7 @@ const click = () => {
         :alt="props.title"
         :title="props.title"
         :draggable="false"
-        :style="winWidth < 640 ? {} : { width: `${width}px`, willChange: 'width' }"
+        :style="winWidth < 640 ? {} : { width, willChange: 'width' }"
       >
     </a>
     <img

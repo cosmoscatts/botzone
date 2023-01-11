@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@vueuse/core": "^9.10.0",
+    "@vueuse/motion": "2.0.0-beta.12",
     "animate.css": "^4.1.1",
     "axios": "^1.2.2",
     "canvas-confetti": "^1.6.0",
@@ -21,6 +22,7 @@
     "naive-ui": "^2.34.3",
     "pinia": "^2.0.28",
     "pinia-plugin-persist-uni": "^1.2.0",
+    "popmotion": "^11.0.5",
     "seemly": "^0.3.6",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"

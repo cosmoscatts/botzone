@@ -5,7 +5,7 @@ const authStore = useAuthStore()
 const password = ref('')
 const sign = ref('点击登录')
 const setSign = (value: string) => sign.value = value
-const loginHandle = () => {
+const submit = () => {
   if (['', '123456'].includes(password.value)) {
     authStore.setLogin(true)
   } else if (password.value !== '') {
@@ -13,7 +13,7 @@ const loginHandle = () => {
   }
 }
 const keyPress = (e: KeyboardEvent) => {
-  if (e.key === 'Enter') loginHandle()
+  if (e.key === 'Enter') submit()
 }
 </script>
 
@@ -25,7 +25,7 @@ const keyPress = (e: KeyboardEvent) => {
         isDark ? wallpapers.night : wallpapers.day
       }) center/cover no-repeat`,
     }"
-    @click="loginHandle"
+    @click="submit"
   >
     <div class="inline-block wa relative top-1/2 -mt-40">
       <img

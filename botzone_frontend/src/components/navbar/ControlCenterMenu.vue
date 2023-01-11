@@ -94,7 +94,7 @@ onClickOutside(refEl, systemStore.toggleControlCenter)
       <span font-medium ml-0.5>声音</span>
       <CCMSlider
         v-model:value="systemStore.volume"
-        icon="i-ion:volume-high"
+        :icon="['i-ion-volume-high', 'i-ion-volume-mute'][Number(systemStore.volume === 0)]"
         :set-value="systemStore.setAudioVolume"
       />
     </div>
