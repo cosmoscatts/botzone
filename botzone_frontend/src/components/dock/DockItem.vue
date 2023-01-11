@@ -5,7 +5,7 @@ const props = defineProps<{
   id: string
   title: string
   img: string
-  mouseX: number
+  mouseX: number | null
   desktop: boolean
   isOpen: boolean
   link?: string
