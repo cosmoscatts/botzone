@@ -33,13 +33,13 @@ const handleClick = () => {
 
 <template>
   <div
-    w-screen h-screen bg-black flex="col c"
+    w-screen h-screen bg-black flex="c col"
     @click="handleClick"
   >
     <span i-fa-brands:apple text-white mt="[-4]" w-20 h-20 sm:w-24 sm:h-24 />
     <div
       v-if="loading"
-      className="absolute top-1/2 left-0 right-0 w-56 h-1 sm:h-1.5 bg-gray-500 rounded overflow-hidden"
+      class="absolute top-1/2 left-0 right-0 w-56 h-1 sm:h-1.5 bg-gray-500 rounded of-hidden"
       m="t-16 sm:t-24 x-auto"
     >
       <span

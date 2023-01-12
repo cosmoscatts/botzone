@@ -30,6 +30,10 @@ export const useAppStore = defineStore('appStore', () => {
     hideDockAndTopbar: false,
     showLaunchpad: false,
   })
+  const setShowApps = (showApps = {}) => state.showApps = showApps
+  const setMaxApps = (maxApps = {}) => state.maxApps = maxApps
+  const setMinApps = (minApps = {}) => state.minApps = minApps
+  const setHideDockAndTopbar = (value: boolean) => state.hideDockAndTopbar = value
   const toggleLaunchpad = () => {
     const r = document.querySelector('#launchpad') as HTMLElement
     if (!state.showLaunchpad) {
@@ -82,6 +86,10 @@ export const useAppStore = defineStore('appStore', () => {
   }
   return {
     ...toRefs(state),
+    setShowApps,
+    setMaxApps,
+    setMinApps,
+    setHideDockAndTopbar,
     toggleLaunchpad,
     getAppsData,
     openApp(id: string) {

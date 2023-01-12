@@ -1,15 +1,12 @@
 <script setup lang="ts">
-defineProps<{
+const { id, max } = defineProps<{
   id: string
   max: boolean
-  setMax: (id: string, target?: boolean) => void
-  setMin: (id: string) => void
-  close: (id: string) => void
 }>()
-
+const emits = defineEmits(['setMax', 'setMin', 'close'])
 const closeWindow = (e: MouseEvent | TouchEvent): void => {
   e.stopPropagation()
-  close(id)
+  emits('close', id)
 }
 </script>
 
@@ -27,8 +24,8 @@ const closeWindow = (e: MouseEvent | TouchEvent): void => {
         max ? 'c-bg-400' : 'bg-yellow-500 dark:bg-yellow-400'
       }`"
       :disabled="max"
-      @click="() => setMin(id)"
-      @touchend="() => setMin(id)"
+      @click="$emit('setMin', id)"
+      @touchend="$emit('setMin', id)"
     >
       <span
         :class="`icon i-fe:minus text-[10px] ${max ? 'invisible' : ''}`"
@@ -36,8 +33,8 @@ const closeWindow = (e: MouseEvent | TouchEvent): void => {
     </button>
     <button
       class="window-btn bg-green-500 dark:bg-green-400"
-      @click="() => setMax(id)"
-      @touchend="() => setMax(id)"
+      @click="$emit('setMax', id)"
+      @touchend="$emit('setMax', id)"
     >
       <ExitFullIcon v-if="max" :size="9" />
       <FullIcon v-else :size="6" />
