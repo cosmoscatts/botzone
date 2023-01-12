@@ -1,4 +1,5 @@
 import type { AppData } from '~/types'
+import VSCode from '~/components/apps/VSCode.vue'
 
 export const apps: AppData[] = [
   {
@@ -32,9 +33,9 @@ export const apps: AppData[] = [
     id: 'vscode',
     title: 'VSCode',
     desktop: true,
-    show: false,
+    show: true,
     img: 'imgs/icons/vscode.png',
-    // content: <VSCode />
+    content: VSCode,
   },
   {
     id: 'facetime',

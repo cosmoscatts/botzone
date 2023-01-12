@@ -51,12 +51,12 @@ const { x, y } = useDraggable(refEl, {
   handle: refTrigger,
 })
 
-useResizeObserver(refEl, (entries) => {
-  const entry = entries[0]
-  const { width, height } = entry.contentRect
-  state.width = width
-  state.height = height
-})
+// useResizeObserver(refEl, (entries) => {
+//   const entry = entries[0]
+//   const { width, height } = entry.contentRect
+//   state.width = width
+//   state.height = height
+// })
 
 watch([winWidth, winHeight], ([_width, _height]) => {
   state.width = Math.min(_width, state.width)

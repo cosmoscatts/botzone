@@ -26,6 +26,7 @@ declare module '@vue/runtime-core' {
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     TrafficLights: typeof import('./components/window/TrafficLights.vue')['default']
+    VSCode: typeof import('./components/apps/VSCode.vue')['default']
     WifiMenu: typeof import('./components/navbar/WifiMenu.vue')['default']
     Window: typeof import('./components/window/Window.vue')['default']
   }

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import WindowArea from './components/WindowArea.vue'
 import { wallpapers } from '~/configs'
 
 const appStore = useAppStore()
@@ -21,6 +22,9 @@ appStore.getAppsData()
     }"
   >
     <Navbar />
+
+    <WindowArea />
+
     <Dock />
   </div>
 </template>
