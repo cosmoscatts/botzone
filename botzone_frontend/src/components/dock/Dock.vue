@@ -4,8 +4,8 @@ import { apps } from '~/configs'
 const appStore = useAppStore()
 const dockStore = useDockStore()
 
-const mouseX = ref<number | null>(null)
-const setMouseX = (value: number | null) => mouseX.value = value
+let mouseX = $ref<number | null>(null)
+const setMouseX = (value: number | null) => mouseX = value
 </script>
 
 <template>

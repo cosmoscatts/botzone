@@ -15,7 +15,7 @@ const refImg = ref()
 const appStore = useAppStore()
 const dockStore = useDockStore()
 const { width: winWidth } = useWindowSize()
-const createDockHoverAnimation = () => {
+const useDockHoverAnimation = () => {
   const [dockSize, dockMag] = [dockStore.size, dockStore.mag]
   const distanceLimit = dockSize * 6
   const distanceInput = [
@@ -64,7 +64,7 @@ const createDockHoverAnimation = () => {
   return width
 }
 
-const width = createDockHoverAnimation()
+const width = useDockHoverAnimation()
 const click = () => {
   if (props.desktop || props.id === 'launchpad') {
     appStore.openApp(props.id)

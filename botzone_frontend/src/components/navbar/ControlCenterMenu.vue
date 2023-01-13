@@ -85,7 +85,7 @@ onClickOutside(refEl, systemStore.toggleControlCenter)
     <div cc-grid col-span-4 px2.5 py2 space-y-1 flex="~ col" justify-around>
       <span font-medium ml-0.5>显示器</span>
       <CCMSlider
-        v-model:value="systemStore.brightness"
+        :value="systemStore.brightness"
         icon="i-ion:sunny"
         :set-value="systemStore.setBrightness"
       />
@@ -93,7 +93,7 @@ onClickOutside(refEl, systemStore.toggleControlCenter)
     <div cc-grid col-span-4 px2.5 py2 space-y-1 flex="~ col" justify-around>
       <span font-medium ml-0.5>声音</span>
       <CCMSlider
-        v-model:value="systemStore.volume"
+        :value="systemStore.volume"
         :icon="['i-ion-volume-high', 'i-ion-volume-mute'][Number(systemStore.volume === 0)]"
         :set-value="systemStore.setAudioVolume"
       />

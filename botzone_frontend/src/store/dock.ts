@@ -1,11 +1,13 @@
 export const useDockStore = defineStore('dockStore', () => {
-  const size = ref(50)
-  const mag = ref(2)
+  let size = $ref(50)
+  let mag = $ref(2)
   return {
-    size,
-    mag,
-    setDockSize: (value: number) => size.value = value,
-    setDockMag: (value: number) => mag.value = value,
+    ...$$({
+      size,
+      mag,
+    }),
+    setDockSize: (value: number) => size = value,
+    setDockMag: (value: number) => mag = value,
   }
 }, { persist: { enabled: true } })
 

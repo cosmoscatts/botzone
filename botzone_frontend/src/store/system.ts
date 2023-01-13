@@ -21,35 +21,37 @@ const getBaseState = () => {
 }
 
 export const useSystemStore = defineStore('systemStore', () => {
-  const volume = ref(100)
-  const brightness = ref(80)
-  const wifi = ref(true)
-  const bluetooth = ref(true)
-  const airdrop = ref(true)
-  const { isFullscreen: fullscreen, toggle: toggleFullScreen } = useFullscreen()
+  let volume = $ref(100)
+  let brightness = $ref(80)
+  let wifi = $ref(true)
+  let bluetooth = $ref(true)
+  let airdrop = $ref(true)
+  const { isFullscreen: fullscreen, toggle: toggleFullScreen } = $(useFullscreen())
   const state = reactive<NavbarState>(getBaseState())
   const [, audioState, controls] = useAudio({
     src: music.audio,
     autoReplay: true,
   })
-  const setVolume = (data: number) => volume.value = data
+  const setVolume = (data: number) => volume = data
   return {
-    volume,
-    brightness,
-    wifi,
-    bluetooth,
-    airdrop,
-    fullscreen,
+    ...$$({
+      volume,
+      brightness,
+      wifi,
+      bluetooth,
+      airdrop,
+      fullscreen,
+    }),
     state,
     toggleFullScreen,
     audio: {
       controls,
       ...audioState,
     },
-    setBrightness: (data: number) => brightness.value = data,
-    toggleWIFI: () => wifi.value = !wifi.value,
-    toggleBluetooth: () => bluetooth.value = !bluetooth.value,
-    toggleAirdrop: () => airdrop.value = !airdrop.value,
+    setBrightness: (data: number) => brightness = data,
+    toggleWIFI: () => wifi = !wifi,
+    toggleBluetooth: () => bluetooth = !bluetooth,
+    toggleAirdrop: () => airdrop = !airdrop,
     setDate: (data: Date) => state.date = data,
     toggleAppleMenu: () => state.showAppleMenu = !state.showAppleMenu,
     toggleControlCenter: () => state.showControlCenter = !state.showControlCenter,

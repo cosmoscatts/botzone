@@ -2,16 +2,17 @@
 const LOADING_INTERVAL = 1
 const BOOTING_INTERVAL = 500
 const authStore = useAuthStore()
-const { loading, startLoading, endLoading } = useLoading()
-const percent = ref(0)
-const setPercent = (value = 0) => percent.value = value
+const { loading, startLoading, endLoading } = $(useLoading())
 
-watch(() => authStore.restart, (val) => {
-  if (val) startLoading()
+let percent = $ref(0)
+const setPercent = (value = 0) => percent = value
+
+watch(() => authStore.restart, (n) => {
+  if (n) startLoading()
 }, { immediate: true })
 
 const { pause, resume } = useIntervalFn(() => {
-  const newPercent = percent.value + 0.15
+  const newPercent = percent + 0.15
   if (newPercent >= 100) {
     useTimeoutFn(() => {
       authStore.setBooting(false)
@@ -20,14 +21,14 @@ const { pause, resume } = useIntervalFn(() => {
   } else setPercent(newPercent)
 }, LOADING_INTERVAL, { immediate: false })
 
-watch(loading, (val) => {
-  if (val) resume()
+watch($$(loading), (n) => {
+  if (n) resume()
   else pause()
 }, { immediate: true })
 
 const handleClick = () => {
   if (authStore.sleep) authStore.setBooting(false)
-  else if (!authStore.restart && !loading.value) startLoading()
+  else if (!authStore.restart && !loading) startLoading()
 }
 </script>
 

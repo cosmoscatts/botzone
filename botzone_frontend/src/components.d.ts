@@ -29,5 +29,6 @@ declare module '@vue/runtime-core' {
     VSCode: typeof import('./components/apps/VSCode.vue')['default']
     WifiMenu: typeof import('./components/navbar/WifiMenu.vue')['default']
     Window: typeof import('./components/window/Window.vue')['default']
+    WindowArea: typeof import('./components/window/WindowArea.vue')['default']
   }
 }

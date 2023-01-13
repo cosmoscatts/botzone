@@ -2,20 +2,21 @@ import defaultAvatar from '/imgs/user/default-avatar.jpg'
 import type { User } from '~/types'
 
 export const useAuthStore = defineStore('authStore', () => {
-  const user = ref<User>({
+  const user = $ref<User>({
     name: 'admin',
     avatar: defaultAvatar,
   })
-  const login = ref(true)
-  const powerOn = ref(false)
-  const booting = ref(false)
-  const restart = ref(false)
-  const sleep = ref(false)
-  const setLogin = (value: boolean) => login.value = value
-  const setPowerOn = (value: boolean) => powerOn.value = value
-  const setBooting = (value: boolean) => booting.value = value
-  const setRestart = (value: boolean) => restart.value = value
-  const setSleep = (value: boolean) => sleep.value = value
+  let login = $ref(true)
+  let powerOn = $ref(false)
+  let booting = $ref(false)
+  let restart = $ref(false)
+  let sleep = $ref(false)
+
+  const setLogin = (value: boolean) => login = value
+  const setPowerOn = (value: boolean) => powerOn = value
+  const setBooting = (value: boolean) => booting = value
+  const setRestart = (value: boolean) => restart = value
+  const setSleep = (value: boolean) => sleep = value
 
   const closeEffect = () => {
     const systemStore = useSystemStore()
@@ -49,7 +50,7 @@ export const useAuthStore = defineStore('authStore', () => {
     closeEffect()
     setLogin(false)
   }
-  return {
+  return $$({
     user,
     login,
     powerOn,
@@ -65,5 +66,5 @@ export const useAuthStore = defineStore('authStore', () => {
     restartMac,
     sleepMac,
     logout,
-  }
+  })
 }, { persist: { enabled: true } })

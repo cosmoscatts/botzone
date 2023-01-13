@@ -2,8 +2,8 @@
 import { darkTheme, dateZhCN, zhCN } from 'naive-ui'
 import hljs from 'highlight.js/lib/core'
 import java from 'highlight.js/lib/languages/java'
-import Login from '~/pages/login/index.vue'
-import Desktop from '~/pages/desktop/index.vue'
+import Login from '~/pages/Login.vue'
+import Desktop from '~/pages/Desktop.vue'
 import Boot from '~/pages/Boot.vue'
 
 hljs.registerLanguage('java', java)
