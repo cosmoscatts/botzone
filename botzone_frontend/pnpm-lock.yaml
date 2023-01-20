@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@antfu/eslint-config': ^0.34.1
-  '@iconify/json': ^2.2.8
+  '@iconify/json': ^2.2.9
   '@types/canvas-confetti': ^1.6.0
   '@types/lodash': ^4.14.191
   '@unocss/reset': ^0.48.4
@@ -58,7 +58,7 @@ dependencies:
 
 devDependencies:
   '@antfu/eslint-config': registry.npmmirror.com/@antfu/eslint-config/0.34.1_7uibuqfxkfaozanbtbziikiqje
-  '@iconify/json': registry.npmmirror.com/@iconify/json/2.2.8
+  '@iconify/json': registry.npmmirror.com/@iconify/json/2.2.9
   '@types/canvas-confetti': registry.npmmirror.com/@types/canvas-confetti/1.6.0
   '@types/lodash': registry.npmmirror.com/@types/lodash/4.14.191
   '@unocss/reset': registry.npmmirror.com/@unocss/reset/0.48.4
@@ -591,10 +591,10 @@ packages:
     version: 1.2.1
     dev: true
 
-  registry.npmmirror.com/@iconify/json/2.2.8:
-    resolution: {integrity: sha512-Vusnz/QRrTmGFzzmZ1Mf6mG2OEbBWLrd/gXgaBpCbjP/abDLdKd7+DMRJlaZA/jqMJ0rsIL0juZ9FwApBnh/ww==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify/json/-/json-2.2.8.tgz}
+  registry.npmmirror.com/@iconify/json/2.2.9:
+    resolution: {integrity: sha512-R6a+izCJRPVAv/KR6QARNQwiKh4BiGYaIQUqLwmbI7m9gC1I5JoniT7F63jlic9CfRnUXlgxNEe6lpfh/wAA3Q==, registry: http://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@iconify/json/-/json-2.2.9.tgz}
     name: '@iconify/json'
-    version: 2.2.8
+    version: 2.2.9
     dependencies:
       '@iconify/types': registry.npmmirror.com/@iconify/types/2.0.0
       pathe: registry.npmmirror.com/pathe/1.0.0
