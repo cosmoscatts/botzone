@@ -4,7 +4,7 @@ const appStore = useAppStore()
 </script>
 
 <template>
-  <div class="window-bound z-10 absolute" style="{ top: minMarginY }">
+  <div class="window-bound z-10 absolute mt32px">
     <template v-for="app in apps" :key="`desktop-app-${app.id}`">
       <Window
         v-if="app.desktop && appStore.showApps[app.id]"

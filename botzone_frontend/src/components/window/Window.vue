@@ -29,26 +29,38 @@ const state = reactive({
 const refEl = ref<HTMLElement | null>(null)
 const refTrigger = ref<HTMLElement | null>(null)
 
+const getPosition = () => {
+  return [
+    Math.min(
+      winWidth.value * 2 - MIN_MARGIN_X,
+      Math.max(
+        winWidth.value - state.width + MIN_MARGIN_X,
+        state.x,
+      ),
+    ),
+    Math.min(
+      winHeight.value - MIN_MARGIN_Y - (dockStore.size + 15 + MIN_MARGIN_Y),
+      Math.max(0, state.y),
+    ),
+  ]
+}
+const [calcPosX, calcPosY] = getPosition()
 const { x, y } = useDraggable(refEl, {
   initialValue: {
-    x: props.max
-      ? winWidth.value
-      : Math.min(
-        winWidth.value * 2 - MIN_MARGIN_X,
-        Math.max(
-          winWidth.value - state.width + MIN_MARGIN_X,
-          state.x,
-        ),
-      ),
-    y: props.max
-      ? -MIN_MARGIN_Y
-      : Math.min(
-        winHeight.value - MIN_MARGIN_Y - (dockStore.size + 15 + MIN_MARGIN_Y),
-        Math.max(0, state.y),
-      ),
+    x: calcPosX,
+    y: calcPosY,
   },
+  exact: true,
   preventDefault: true,
   handle: refTrigger,
+})
+watch(() => props.max, (val) => {
+  x.value = val
+    ? winWidth.value
+    : calcPosX
+  y.value = val
+    ? -MIN_MARGIN_Y
+    : calcPosY
 })
 
 // useResizeObserver(refEl, (entries) => {
@@ -70,8 +82,8 @@ const minimized = computed(() => {
     : ''
 })
 const border = computed(() => props.max ? '' : 'border border-gray-500/30')
-const width = computed(() => props.max ? winWidth : state.width)
-const height = computed(() => props.max ? winHeight : state.height)
+const width = computed(() => props.max ? winWidth.value : state.width)
+const height = computed(() => props.max ? winHeight.value : state.height)
 
 const setWindowPosition = (id: string): void => {
   const r = document.querySelector(`#window-${id}`) as HTMLElement
@@ -113,7 +125,7 @@ const minimizeApp = (id: string): void => {
   const posX = window.innerWidth + dockAppRect.x - r.offsetWidth / 2 + 25
 
   r.style.transform = `translate(${posX}px, ${posY}px) scale(0.2)`
-  r.style.transition = 'ease-out 0.3s'
+  r.style.transition = 'ease-out 0.5s'
 
   setAppMin(id, true)
 }

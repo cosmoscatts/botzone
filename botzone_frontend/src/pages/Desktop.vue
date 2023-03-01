@@ -20,7 +20,7 @@ appStore.getAppsData()
       filter: `brightness( ${brightness}% )`,
     }"
   >
-    <Navbar />
+    <Navbar :hide="appStore.hideDockAndTopbar" />
 
     <WindowArea />
 
