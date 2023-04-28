@@ -9,15 +9,23 @@ const ALPHA = 0.8
 export type RGBA = [number, number, number, number]
 export type RGB = [number, number, number]
 
-export const createHoverColor = (color: string | RGB | RGBA) => composite(color, [255, 255, 255, 0.12])
+export function createHoverColor(color: string | RGB | RGBA) {
+  return composite(color, [255, 255, 255, 0.12])
+}
 
-export const createPressedColor = (color: string | RGB | RGBA) => composite(color, [0, 0, 0, 0.15])
+export function createPressedColor(color: string | RGB | RGBA) {
+  return composite(color, [0, 0, 0, 0.15])
+}
 
-export const addColorAlpha = (color: string, alpha: number) => colord(color).alpha(alpha).toHex()
+export function addColorAlpha(color: string, alpha: number) {
+  return colord(color).alpha(alpha).toHex()
+}
 
-export const createPrimaryColor = (primaryColor: string) => ({
-  primaryColor,
-  primaryColorHover: createHoverColor(primaryColor),
-  primaryColorPressed: createPressedColor(primaryColor),
-  primaryColorSuppl: addColorAlpha(primaryColor, ALPHA),
-})
+export function createPrimaryColor(primaryColor: string) {
+  return {
+    primaryColor,
+    primaryColorHover: createHoverColor(primaryColor),
+    primaryColorPressed: createPressedColor(primaryColor),
+    primaryColorSuppl: addColorAlpha(primaryColor, ALPHA),
+  }
+}

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { interpolate } from 'popmotion'
 import { useSpring } from '@vueuse/motion'
+
 const props = defineProps<{
   id: string
   title: string
@@ -15,7 +16,7 @@ const refImg = ref()
 const appStore = useAppStore()
 const dockStore = useDockStore()
 const { width: winWidth } = useWindowSize()
-const useDockHoverAnimation = () => {
+function useDockHoverAnimation() {
   const [dockSize, dockMag] = [dockStore.size, dockStore.mag]
   const distanceLimit = dockSize * 6
   const distanceInput = [
@@ -65,7 +66,7 @@ const useDockHoverAnimation = () => {
 }
 
 const width = useDockHoverAnimation()
-const click = () => {
+function click() {
   if (props.desktop || props.id === 'launchpad') {
     appStore.openApp(props.id)
   }

@@ -4,15 +4,17 @@ import { wallpapers } from '~/configs'
 const authStore = useAuthStore()
 const password = ref('')
 const sign = ref('点击登录')
-const setSign = (value: string) => sign.value = value
-const submit = () => {
+function setSign(value: string) {
+  return sign.value = value
+}
+function submit() {
   if (['', '123456'].includes(password.value)) {
     authStore.setLogin(true)
   } else if (password.value !== '') {
     setSign('密码不正确')
   }
 }
-const keyPress = (e: KeyboardEvent) => {
+function keyPress(e: KeyboardEvent) {
   if (e.key === 'Enter') submit()
 }
 </script>

@@ -4,7 +4,7 @@ const { id, max } = defineProps<{
   max: boolean
 }>()
 const emits = defineEmits(['setMax', 'setMin', 'close'])
-const closeWindow = (e: MouseEvent | TouchEvent): void => {
+function closeWindow(e: MouseEvent | TouchEvent): void {
   e.stopPropagation()
   emits('close', id)
 }

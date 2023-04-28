@@ -29,7 +29,7 @@ const state = reactive({
 const refEl = ref<HTMLElement | null>(null)
 const refTrigger = ref<HTMLElement | null>(null)
 
-const getPosition = () => {
+function getPosition() {
   return [
     Math.min(
       winWidth.value * 2 - MIN_MARGIN_X,
@@ -85,7 +85,7 @@ const border = computed(() => props.max ? '' : 'border border-gray-500/30')
 const width = computed(() => props.max ? winWidth.value : state.width)
 const height = computed(() => props.max ? winHeight.value : state.height)
 
-const setWindowPosition = (id: string): void => {
+function setWindowPosition(id: string): void {
   const r = document.querySelector(`#window-${id}`) as HTMLElement
   const rect = r.getBoundingClientRect()
   r.style.setProperty(
@@ -98,7 +98,7 @@ const setWindowPosition = (id: string): void => {
   )
 }
 
-const setAppMax = (id: string, target?: boolean) => {
+function setAppMax(id: string, target?: boolean) {
   const maxApps = appStore.maxApps
   if (target === undefined) target = !maxApps[id]
   maxApps[id] = target
@@ -106,7 +106,7 @@ const setAppMax = (id: string, target?: boolean) => {
   appStore.setHideDockAndTopbar(target)
 }
 
-const setAppMin = (id: string, target?: boolean): void => {
+function setAppMin(id: string, target?: boolean): void {
   const minApps = appStore.minApps
   if (target === undefined) target = !minApps[id]
   minApps[id] = target
@@ -114,7 +114,7 @@ const setAppMin = (id: string, target?: boolean): void => {
   appStore.setHideDockAndTopbar(target)
 }
 
-const minimizeApp = (id: string): void => {
+function minimizeApp(id: string): void {
   setWindowPosition(id)
 
   let r = document.querySelector(`#dock-${id}`) as HTMLElement
@@ -130,7 +130,7 @@ const minimizeApp = (id: string): void => {
   setAppMin(id, true)
 }
 
-const closeApp = (id: string): void => {
+function closeApp(id: string): void {
   setAppMax(id, false)
   const showApps = appStore.showApps
   showApps[id] = false

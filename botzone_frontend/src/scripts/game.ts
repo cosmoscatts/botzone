@@ -26,7 +26,7 @@ export class Game {
 }
 
 let lastTimestamp = 0 // 上一次执行的时间
-const step = (timestamp: number) => {
+function step(timestamp: number) {
   GAME_OBJECTS.forEach((game) => {
     if (!game.hasCalledStart) {
       game.hasCalledStart = true

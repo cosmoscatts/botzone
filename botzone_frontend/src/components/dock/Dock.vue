@@ -5,7 +5,9 @@ const appStore = useAppStore()
 const dockStore = useDockStore()
 
 let mouseX = $ref<number | null>(null)
-const setMouseX = (value: number | null) => mouseX = value
+function setMouseX(value: number | null) {
+  return mouseX = value
+}
 </script>
 
 <template>
