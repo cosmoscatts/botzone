@@ -5,7 +5,9 @@ const authStore = useAuthStore()
 const { loading, startLoading, endLoading } = $(useLoading())
 
 let percent = $ref(0)
-const setPercent = (value = 0) => percent = value
+function setPercent(value = 0) {
+  return percent = value
+}
 
 watch(() => authStore.restart, (n) => {
   if (n) startLoading()
@@ -26,7 +28,7 @@ watch($$(loading), (n) => {
   else pause()
 }, { immediate: true })
 
-const handleClick = () => {
+function handleClick() {
   if (authStore.sleep) authStore.setBooting(false)
   else if (!authStore.restart && !loading) startLoading()
 }

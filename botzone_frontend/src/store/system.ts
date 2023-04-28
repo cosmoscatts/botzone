@@ -1,3 +1,4 @@
+import type { StoreDefinition } from 'pinia'
 import { music } from '~/configs'
 
 interface NavbarState {
@@ -9,7 +10,7 @@ interface NavbarState {
   showSpotlight: boolean
 }
 
-const getBaseState = () => {
+function getBaseState() {
   return {
     date: new Date(),
     showAppleMenu: false,
@@ -73,5 +74,5 @@ export const useSystemStore = defineStore('systemStore', () => {
 }, { persist: { enabled: true } })
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useSystemStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useSystemStore as unknown as StoreDefinition, import.meta.hot))
 }

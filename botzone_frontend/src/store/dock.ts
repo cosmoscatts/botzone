@@ -1,3 +1,5 @@
+import type { StoreDefinition } from 'pinia'
+
 export const useDockStore = defineStore('dockStore', () => {
   let size = $ref(50)
   let mag = $ref(2)
@@ -12,5 +14,5 @@ export const useDockStore = defineStore('dockStore', () => {
 }, { persist: { enabled: true } })
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useDockStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useDockStore as unknown as StoreDefinition, import.meta.hot))
 }

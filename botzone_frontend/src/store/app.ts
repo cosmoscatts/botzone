@@ -1,3 +1,4 @@
+import type { StoreDefinition } from 'pinia'
 import { apps } from '~/configs'
 
 interface AppState {
@@ -103,5 +104,5 @@ export const useAppStore = defineStore('appStore', () => {
 }, { persist: { enabled: true } })
 
 if (import.meta.hot) {
-  import.meta.hot.accept(acceptHMRUpdate(useAppStore, import.meta.hot))
+  import.meta.hot.accept(acceptHMRUpdate(useAppStore as unknown as StoreDefinition, import.meta.hot))
 }
