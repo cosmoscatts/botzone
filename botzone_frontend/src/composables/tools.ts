@@ -15,13 +15,15 @@ export {
 
 // ----- 格式化时间 -----
 
-export const formatDate = ({
+export function formatDate({
   date = new Date(),
   pattern = 'YYYY-MM-DD HH:mm:ss',
 }: {
   date?: Date | string | number
   pattern?: string
-}): string => dayjs(date).format(pattern)
+}): string {
+  return dayjs(date).format(pattern)
+}
 
 // ----- Confirm 确认框 -----
 

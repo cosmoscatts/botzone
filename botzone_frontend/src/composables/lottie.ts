@@ -1,7 +1,7 @@
 import lottie from 'lottie-web'
 import type { RendererType } from 'lottie-web'
 
-export const useLottie = ({
+export function useLottie({
   container,
   path,
   loop = true,
@@ -11,9 +11,11 @@ export const useLottie = ({
   path: string
   loop?: boolean
   renderer?: RendererType
-}) => lottie.loadAnimation({
-  container,
-  path,
-  loop,
-  renderer,
-})
+}) {
+  return lottie.loadAnimation({
+    container,
+    path,
+    loop,
+    renderer,
+  })
+}

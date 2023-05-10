@@ -1,6 +1,6 @@
 import { Token } from '~/utils'
 
-const formatSocketUrl = () => {
+function formatSocketUrl() {
   const urlPrefix = import.meta.env.VITE_BASE_SOCKET_URL
   return `${urlPrefix}/websocket/${Token.get()}/`
 }
